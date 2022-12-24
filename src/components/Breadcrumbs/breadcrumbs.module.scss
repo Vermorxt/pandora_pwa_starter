@@ -1,0 +1,20 @@
+@import './../../../styles/variables.scss';
+
+.breadcrumbs_nav {
+  margin-bottom: 10px;
+  margin-top: 0;
+  flex-shrink: 0;
+
+  .breadcrumbs {
+    list-style: none;
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  a {
+    text-decoration: none !important;
+    font-weight: 300;
+  }
+}

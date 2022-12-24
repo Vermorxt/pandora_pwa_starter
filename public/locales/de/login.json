@@ -1,0 +1,7 @@
+{
+  "description": "Bitte Benutzername/E-Mail und Passwort eingeben.",
+  "label_email": "E-Mail",
+  "label_password": "Passwort",
+  "forgot_password": "Passwort vergessen",
+  "login": "Anmelden"
+}

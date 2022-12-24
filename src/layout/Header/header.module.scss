@@ -1,0 +1,60 @@
+.ui.container {
+  margin-top: 0;
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.header {
+  background-color: red;
+  .avatar {
+    padding-bottom: 0 !important;
+    padding-top: 40px !important;
+
+    .ui {
+      &.header {
+        text-align: right;
+        margin-right: -5px;
+      }
+
+      .img {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .button {
+        margin-left: 40px;
+        width: 40px;
+        border: 1px solid gray;
+        background-color: transparent;
+        border-radius: 10px;
+        padding: 12px 15px 10px;
+
+        i {
+          display: block;
+          padding: 0 10px 0 0;
+          font-size: 20px;
+          border: 0 none;
+          margin-left: -10px !important;
+        }
+      }
+    }
+  }
+}
+
+$cardColor: unquote('hsl(var(--b1)') / unquote('var(--tw-bg-opacity))');
+
+.profile {
+  &::before {
+    content: '';
+    width: 0px;
+    height: 0px;
+    -webkit-transform: rotate(360deg);
+    border-style: solid;
+    border-width: 0 15px 10px 15px;
+    border-color: transparent transparent $cardColor transparent;
+    position: absolute;
+    top: -8px;
+    right: 18px;
+  }
+}

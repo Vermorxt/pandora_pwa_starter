@@ -1,0 +1,44 @@
+@import './../../../styles/variables.scss';
+
+.link {
+  display: flex;
+  margin-left: 10px;
+}
+
+.env {
+  margin-bottom: 0;
+  padding-left: 63px;
+
+  p {
+    text-transform: uppercase;
+    color: $brand-color--mint;
+    font-weight: 100;
+    font-size: 10px;
+  }
+}
+
+.internet {
+  background-color: red;
+  width: 5px;
+  height: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  border-radius: 50%;
+  margin-top: -2px;
+}
+
+.connected {
+  background-color: #21ba45;
+}
+
+.popover {
+  background-color: #f00 !important;
+  color: #fff !important;
+  border: 0 none !important;
+
+  &:before {
+    background-color: #f00 !important;
+    box-shadow: none !important;
+  }
+}
