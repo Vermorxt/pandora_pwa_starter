@@ -66,7 +66,7 @@ export const ThemeChanger = () => {
                 <button
                   type="button"
                   data-set-theme={themeObj.name}
-                  className={`${themeObj.name === theme ? 'active' : ''} my-0 py-0.5`}
+                  className={`${themeObj.name === theme ? 'active' : ''} !my-0 py-0.5`}
                   onClick={() => setTheme(themeObj.name)}
                   style={{ paddingBottom: 5, paddingTop: 5 }}
                 >

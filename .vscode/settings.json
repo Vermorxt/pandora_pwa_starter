@@ -1,0 +1,22 @@
+{
+  "editor.formatOnSave": true,
+  "cSpell.words": [
+    "aokplus",
+    "appstore",
+    "Birthprep",
+    "Caroussel",
+    "chartdiv",
+    "deletable",
+    "formfield",
+    "hoverable",
+    "linkify",
+    "middlewares",
+    "pdfid",
+    "playstore"
+  ],
+  "editor.tokenColorCustomizations": {
+    "comments": "",
+    "textMateRules": []
+  },
+  "json.maxItemsComputed": 50000
+}
