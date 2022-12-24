@@ -4,4 +4,5 @@ module.exports = {
   arrowParens: 'avoid',
   printWidth: 120,
   endOfLine: 'auto',
+  organizeImportsSkipDestructiveCodeActions: true,
 }

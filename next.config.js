@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  compiler: {
-    removeConsole: process.env.NODE_ENV !== 'development',
-  },
-}
-
 const withPWA = require('next-pwa')({
   dest: 'public',
-  // disable: process.env.NODE_ENV === 'development',
-  disable: false,
-  register: true,
 })
+const { i18n } = require('./next-i18next.config')
 
-module.exports = withPWA(nextConfig)
+const dev = process.env.ENV !== 'production'
+
+console.log('----> process env: ', process.env)
+
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+    skipWaiting: true,
+  },
+  i18n,
+})

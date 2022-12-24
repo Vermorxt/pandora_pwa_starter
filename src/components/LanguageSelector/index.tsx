@@ -24,8 +24,6 @@ export const LanguageSelector: FC = () => {
   const router = useRouter()
   const { locale } = useRouter()
 
-  console.log('locale: ', locale)
-
   return (
     <>
       <Ui_Dropdown tooltip={{ content: `Language: ${locale as string}`, position: 'left' }} end hover>
