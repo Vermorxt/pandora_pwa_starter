@@ -17,7 +17,7 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => (
     <Ui_Drawer.Side id={DRAWER_ID_SIDEBAR}>
       <Sidebar />
     </Ui_Drawer.Side>
-    <Ui_Drawer.Content id={DRAWER_ID_SIDEBAR} isNavbar className="prose max-w-none">
+    <Ui_Drawer.Content id={DRAWER_ID_SIDEBAR} isNavbar className="max-w-none">
       <div style={{ width: '100%', padding: 0, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Header />
         <Container>
