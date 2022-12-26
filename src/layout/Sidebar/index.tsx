@@ -91,7 +91,7 @@ const Sidebar: FC = props => {
                     {route?.routes?.map((routeItem, index) => (
                       <li key={index}>
                         {routeItem?.path && (
-                          <Ui_NavLink href={routeItem?.path as string} className="text-base-content">
+                          <Ui_NavLink href={routeItem?.path as string}>
                             {routeItem?.icon && <routeItem.icon className="h-5 w-5" />}
                             {routeItem?.text}
                           </Ui_NavLink>
