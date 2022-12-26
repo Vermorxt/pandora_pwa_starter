@@ -6,13 +6,16 @@ import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { LayoutProvider } from '../src/layout/LayoutProvider'
 import { GlobalContextProvider } from '../src/system'
-import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
-import './../styles/imports.scss'
 import '../styles/globals.scss'
 import nextI18nextConfig from './../next-i18next.config'
+import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
+
+import './../styles/imports.scss'
 
 const WebApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
+
+  console.log('ENVIRONMENT: ', process.env.NEXT_PUBLIC_ENVIRONMENT)
 
   return (
     <>

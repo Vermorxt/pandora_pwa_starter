@@ -9,6 +9,7 @@ import { LanguageSelector } from '../../components/LanguageSelector'
 import { ThemeChanger } from '../../components/ThemeChanger'
 import { GlobalContext, useGlobalContext } from '../../system'
 import { DRAWER_ID_SIDEBAR, GITHUB_REPO_LINK } from '../../_constants/main'
+import { RoutesInterface } from '../Sidebar'
 
 const GithubIconSvg = () => (
   <svg
@@ -22,9 +23,37 @@ const GithubIconSvg = () => (
   </svg>
 )
 
+export type T_SideBarContext = 'docu' | 'public' | 'dashboard' | 'docs'
+
+const getSidebarContextBasedOnUrl = (url: string) => {
+  const parts = url.split('/')
+
+  return parts[1] as T_SideBarContext
+}
+
 const Header = () => {
   const router = useRouter()
   const [userData, setUserData] = useGlobalContext().userData
+
+  useEffect(() => {
+    if (!router) return
+
+    const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
+
+    console.log('----->>> sideBarContext: ', sideBarContext)
+
+    if (sideBarContext === 'public') {
+      console.log('is public: ', true)
+    }
+
+    if (sideBarContext === 'dashboard') {
+      console.log('is dashboard: ', true)
+    }
+
+    if (sideBarContext === 'docs') {
+      console.log('is docs: ', true)
+    }
+  }, [router])
 
   return (
     <>

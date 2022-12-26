@@ -21,7 +21,6 @@ export type T_SideBarContext = 'docu' | 'public'
 
 const getSidebarContextBasedOnUrl = (url: string) => {
   const parts = url.split('/')
-  console.log('product path: ', parts)
 
   return parts[1] as T_SideBarContext
 }
@@ -29,8 +28,6 @@ const getSidebarContextBasedOnUrl = (url: string) => {
 const Sidebar: FC = props => {
   const { t } = useTranslation('sideMenuDocu')
   const router = useRouter()
-
-  console.log('router: ', router)
 
   const [routes, setRoutes] = useState<RoutesInterface[]>([])
   const [hideSideBar, setHideSidebar] = useState<boolean>(false)
@@ -48,8 +45,6 @@ const Sidebar: FC = props => {
 
     const useRoutes = getRoutesMain(t) as unknown as RoutesInterface[]
     if (useRoutes) setRoutes([...useRoutes])
-
-    console.log('Router: ', sideBarContext)
   }, [router])
 
   if (hideSideBar) return <></>

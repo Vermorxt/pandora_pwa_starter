@@ -76,13 +76,9 @@ const Login = () => {
     }
   }
 
-  console.log('env: ', process.env.NEXT_PUBLIC_ENVIRONMENT)
-
   const loginUser = async (data: AnyType) => {
     setLoginFailed(false)
     setFinishedUpdate(false)
-
-    console.log('api url: ', process.env.NEXT_PUBLIC_API_URL)
 
     const apiResponse = await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL as string}${ApiAuthDefinition.POST_AUTH}`, JSON.stringify(data))
