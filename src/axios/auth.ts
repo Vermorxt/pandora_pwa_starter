@@ -6,6 +6,7 @@ import { firstCharUppercase } from '../components/Breadcrumbs'
 import { CmsUserRoles, Product, UrlPublic } from '../_enums/enums'
 import { AnyType } from '../_types/anytype'
 import { SearchParams } from '../_types/search-params'
+import { GlobalContext } from './../system/GlobalContextProvider/index'
 
 export interface SecureHeaderOptions {
   contentType?: string

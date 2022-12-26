@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import globalSettings from '../../_settings/global.settings'
 import scss from './sidebar.module.scss'
@@ -27,14 +28,14 @@ const SidebarFooter: FC = props => {
             <li></li>
           </ul>
           <div className="" style={{ textAlign: 'center', padding: '10px 0' }}>
-            <a href="/docs/changelog" className="link link-hover ">
+            <Link href="/docs/changelog" className="link link-hover ">
               <div data-tip="Changelog" className="tooltip tooltip-top prose">
                 <span className="version">
                   <small>Version: </small>
                 </span>
                 <small data-tip="Changelog">{globalSettings.version}</small>
               </div>
-            </a>
+            </Link>
             {isConnected && <span className={`${scss.internet} ${scss.connected}`}></span>}
             {!isConnected && <span className={`${scss.internet} `}></span>}
           </div>

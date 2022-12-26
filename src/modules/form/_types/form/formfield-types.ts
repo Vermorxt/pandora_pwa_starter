@@ -1,0 +1,88 @@
+export type FormFieldTypes = 'text' | 'password' | 'email' | 'textarea' | 'toggle' | 'radio' | 'checkbox'
+
+// NOTE: initial form values example
+// const formInitialValues = [
+//   {
+//     name: 'email',
+//     value: '',
+//     label: t('label_email'),
+//     type: 'email',
+//     validation: { minLength: 3, required: true, pattern: getEmailPattern() },
+//   },
+//   {
+//     name: 'password',
+//     value: '',
+//     label: t('label_password'),
+//     type: 'password',
+//     validation: { minLength: 3, required: true },
+//   },
+//   {
+//     name: 'testNum',
+//     value: null,
+//     label: 'Test Number',
+//     type: 'text',
+//     validation: { valueAsNumber: true, required: true },
+//   },
+//   {
+//     name: 'testUrl',
+//     type: 'text',
+//     label: 'Url',
+//     validation: { url: true, required: true },
+//   },
+//   {
+//     name: 'range',
+//     type: 'range',
+//     label: 'Range',
+//     min: '0',
+//     max: '100',
+//     value: null,
+//     step: '10',
+//     validation: { required: true, minLength: 20, maxLength: 60 },
+//   },
+//   {
+//     name: 'area',
+//     type: 'textarea',
+//     label: 'Text area',
+//     validation: { required: true, minLength: 10 },
+//   },
+//   {
+//     name: 'toggle1',
+//     type: 'toggle',
+//     label: 'Toggle',
+//     value: false,
+//     validation: { required: true },
+//   },
+//   {
+//     name: 'checkbox',
+//     type: 'checkbox',
+//     label: 'Checkbox',
+//     value: null,
+//     validation: { required: true },
+//   },
+//   {
+//     name: 'radio',
+//     type: 'radio',
+//     label: 'Radio',
+//     value: '',
+//     radioOptions: ['blue', 'green', 'red'],
+//     validation: { required: true },
+//   },
+//   {
+//     name: 'select1',
+//     type: 'select',
+//     label: 'Select 1',
+//     value: 'red',
+//     selectOptions: ['blue', 'green', 'red', 'purple', 'black', 'yellow', 'grey'],
+//     disableOptions: ['black', 'grey'],
+//     validation: { required: true },
+//   },
+//   {
+//     name: 'select2',
+//     type: 'select',
+//     label: 'Select 2',
+//     value: '',
+//     selectOptions: ['blue', 'green', 'red', 'purple', 'black', 'yellow', 'grey'],
+//     disableOptions: ['black', 'grey'],
+//     validation: { required: true },
+//   },
+// ] as InitialFormValues[]

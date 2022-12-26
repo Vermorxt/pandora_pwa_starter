@@ -1,10 +1,14 @@
 import { MenuIcon } from '@heroicons/react/solid'
-import { Ui_Label } from '@vermorxt/pandora_ui'
+import { Ui_Button, Ui_Label } from '@vermorxt/pandora_ui'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { logout, userIsLoggedIn } from '../../axios/auth'
 import { DarkLightChanger } from '../../components/DarkLightChanger'
 import { LanguageSelector } from '../../components/LanguageSelector'
 import { ThemeChanger } from '../../components/ThemeChanger'
+import { GlobalContext, useGlobalContext } from '../../system'
 import { DRAWER_ID_SIDEBAR, GITHUB_REPO_LINK } from '../../_constants/main'
-import dynamic from 'next/dynamic'
 
 const GithubIconSvg = () => (
   <svg
@@ -19,6 +23,9 @@ const GithubIconSvg = () => (
 )
 
 const Header = () => {
+  const router = useRouter()
+  const [userData, setUserData] = useGlobalContext().userData
+
   return (
     <>
       <div className="header sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm">
@@ -32,7 +39,7 @@ const Header = () => {
             <DarkLightChanger />
             <ThemeChanger />
             <LanguageSelector />
-            <span className="tooltip tooltip-bottom before:text-xs before:content-[attr(data-tip)]" data-tip="GitHub">
+            {/* <span className="tooltip tooltip-bottom before:text-xs before:content-[attr(data-tip)]" data-tip="GitHub">
               <div className="flex-none items-center">
                 <a
                   target={'_blank'}
@@ -43,7 +50,31 @@ const Header = () => {
                   <GithubIconSvg />
                 </a>
               </div>
-            </span>
+            </span> */}
+            <>
+              {userData?.name && (
+                <Ui_Button
+                  size="small"
+                  className="btn-primary ml-2 mr-3"
+                  onClick={() => {
+                    setUserData({})
+                    void logout()
+                    void router.push('/public/login')
+                  }}
+                >
+                  Logout
+                </Ui_Button>
+              )}
+              {!userData?.name && (
+                <Ui_Button
+                  size="small"
+                  className="btn-primary ml-2 mr-3"
+                  onClick={() => void router.push('/public/login')}
+                >
+                  Login
+                </Ui_Button>
+              )}
+            </>
           </div>
         </nav>
       </div>

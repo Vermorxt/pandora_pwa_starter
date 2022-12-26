@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import React, { createContext, FC, useState } from 'react'
+import React, { createContext, FC, useContext, useState } from 'react'
 
 export const GLOBAL_WRAPPER_ID = 'global_wrapper'
 export interface UserContextProps {
@@ -51,3 +51,5 @@ export const GlobalContextProvider: FC<any> = ({ children }) => {
     </GlobalContext.Provider>
   )
 }
+
+export const useGlobalContext: () => GlobalContextValues = () => useContext(GlobalContext)

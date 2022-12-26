@@ -8,7 +8,7 @@ import { LayoutProvider } from '../src/layout/LayoutProvider'
 import { GlobalContextProvider } from '../src/system'
 import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
 import './../styles/imports.scss'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import nextI18nextConfig from './../next-i18next.config'
 
 const WebApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {

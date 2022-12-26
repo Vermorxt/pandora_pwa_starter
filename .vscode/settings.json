@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "cSpell.words": [
+    "anytype",
     "aokplus",
     "appstore",
     "Birthprep",
@@ -12,7 +13,8 @@
     "linkify",
     "middlewares",
     "pdfid",
-    "playstore"
+    "playstore",
+    "vermorxt"
   ],
   "editor.tokenColorCustomizations": {
     "comments": "",

@@ -1,11 +1,11 @@
 import { Ui_Collapse, Ui_Divider, Ui_Label, Ui_NavLink } from '@vermorxt/pandora_ui'
 import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useState } from 'react'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
 import SidebarFooter from './SidebarFooter'
-import { getRoutesDocu } from './sidebarRoutes/routes'
-import dynamic from 'next/dynamic'
+import { getRoutesMain } from './sidebarRoutes/routes_main'
 
 export interface RoutesInterface {
   topic?: string
@@ -46,7 +46,7 @@ const Sidebar: FC = props => {
       setHideSidebar(false)
     }
 
-    const useRoutes = getRoutesDocu(t) as unknown as RoutesInterface[]
+    const useRoutes = getRoutesMain(t) as unknown as RoutesInterface[]
     if (useRoutes) setRoutes([...useRoutes])
 
     console.log('Router: ', sideBarContext)
