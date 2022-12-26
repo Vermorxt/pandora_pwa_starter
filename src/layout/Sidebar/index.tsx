@@ -26,7 +26,7 @@ const getSidebarContextBasedOnUrl = (url: string) => {
 }
 
 const Sidebar: FC = props => {
-  const { t } = useTranslation('sideMenuDocu')
+  const { t } = useTranslation('side-menu-main')
   const router = useRouter()
 
   const [routes, setRoutes] = useState<RoutesInterface[]>([])
@@ -55,7 +55,7 @@ const Sidebar: FC = props => {
         <Ui_NavLink href={'/'}>
           <div className="font-title text-primary text-xl transition-all duration-200 lg:text-3xl">
             <span className="lowercase">App</span>
-            <span className="text-base-content uppercase"> Title</span>
+            <span className="text-base-content uppercase"> {t('title')}</span>
             <span className="text-base-content lowercase text-xs"> postfix</span>
           </div>
         </Ui_NavLink>

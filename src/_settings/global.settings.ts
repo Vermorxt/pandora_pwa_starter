@@ -6,7 +6,7 @@ const globalSettings = {
     sideBarDefaultOpen: true,
     startPage: '/public/start',
   },
-  projects: ['pregnancy', 'ammely', 'postnatal'],
+  projects: ['dashboard', 'docs'],
 }
 
 export default globalSettings

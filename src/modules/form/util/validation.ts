@@ -98,6 +98,19 @@ export const getFieldError = (
         }
       }
 
+      if (objKey === 'match') {
+        const optionValueElement = document.getElementsByName(option as string)
+
+        if (optionValueElement?.[0]) {
+          const matchingElement = optionValueElement[0] as HTMLInputElement
+          const matchingValue = matchingElement?.value
+
+          if (value && matchingValue && value !== matchingValue) {
+            error = { type: 'match', message: `${option as string} does not match.` }
+          }
+        }
+      }
+
       if (objKey === 'url' && option === true) {
         const urlErrorMessage = validateUrlScheme(value as string)
 

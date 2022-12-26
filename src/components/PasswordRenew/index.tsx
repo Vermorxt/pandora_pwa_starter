@@ -33,8 +33,8 @@ export interface UserLoginResponse {
   error?: AxiosError | null
 }
 
-const Login = () => {
-  const { t } = useTranslation('login')
+const PasswordRenew = () => {
+  const { t } = useTranslation('password-renew')
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
@@ -46,20 +46,24 @@ const Login = () => {
 
   const [userData, setUserData] = useGlobalContext().userData
 
+  useEffect(() => {
+    // void logout()
+  }, [])
+
   const formInitialValues = [
-    {
-      name: 'email',
-      value: '',
-      label: t('label_email'),
-      type: 'email',
-      validation: { minLength: 3, required: true, pattern: Helper.getEmailPattern() },
-    },
     {
       name: 'password',
       value: '',
       label: t('label_password'),
       type: 'password',
       validation: { minLength: 3, required: true },
+    },
+    {
+      name: 'password_repeat',
+      value: '',
+      label: t('label_password_repeat'),
+      type: 'password',
+      validation: { minLength: 3, required: true, match: 'password' },
     },
   ] as InitialFormValues[]
 
@@ -74,7 +78,7 @@ const Login = () => {
     }
   }
 
-  const loginUser = async (data: AnyType) => {
+  const resetPassword = async (data: AnyType) => {
     setLoginFailed(false)
     setFinishedUpdate(false)
 
@@ -117,7 +121,7 @@ const Login = () => {
       return
     }
 
-    void loginUser(values as AnyType)
+    void resetPassword(values as AnyType)
   })
 
   return (
@@ -125,7 +129,7 @@ const Login = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{t('login')}</Ui_Card.Title>
+            <Ui_Card.Title>{t('title')}</Ui_Card.Title>
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>
@@ -143,24 +147,21 @@ const Login = () => {
                 {t('login')}
               </Ui_Button>
             </Ui_Form>
-
             {showError && (
               <Ui_Alert variant="error">
                 <span>Oh, something went wrong.</span>
               </Ui_Alert>
             )}
-
             {loginFailed && (
               <Ui_Alert variant="error">
                 <span>Oops, email or password does not match.</span>
               </Ui_Alert>
             )}
-
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{t('forgot_password')}? </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/forgot-password')}>
-                  reset
+                <small>{t('account_available')} </small>
+                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
+                  login
                 </Ui_Button>
               </p>
             </Ui_Card.Actions>
@@ -171,4 +172,4 @@ const Login = () => {
   )
 }
 
-export default React.memo(Login)
+export default React.memo(PasswordRenew)

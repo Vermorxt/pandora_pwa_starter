@@ -1,4 +1,4 @@
-import { InboxInIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { InboxInIcon, LightningBoltIcon, ViewGridIcon } from '@heroicons/react/solid'
 import { RoutesMain } from '../../../_enums/routes-main'
 
 export const getRoutesMain = (t: (arg0: string) => string) => [
@@ -9,6 +9,11 @@ export const getRoutesMain = (t: (arg0: string) => string) => [
         path: RoutesMain.Dashboard,
         icon: ViewGridIcon,
         text: t('dashboard'),
+      },
+      {
+        path: RoutesMain.Wifi,
+        icon: LightningBoltIcon,
+        text: t('wifi'),
       },
       {
         path: RoutesMain.Bluetooth,
