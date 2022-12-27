@@ -8,7 +8,7 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV !== 'development',
   },
-  i18n,
+  // i18n,
 }
 
 const withPWA = require('next-pwa')({
