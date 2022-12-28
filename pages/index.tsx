@@ -1,26 +1,10 @@
 import styles from '../styles/Home.module.css'
 
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 import nextI18NextConfig from '../next-i18next.config'
 
 const Home = ({ locales }: { locales: string[] }) => {
   const router = useRouter()
-
-  // language detection
-  // not recommended for production, use server redirection instead of this
-  useEffect(() => {
-    for (const locale of locales) {
-      // eslint-disable-next-line no-undef
-      for (const lang of navigator.languages) {
-        if (lang.startsWith(locale)) {
-          void router.replace('/' + locale)
-
-          return
-        }
-      }
-    }
-  }, [])
 
   return (
     <div className={styles.container}>

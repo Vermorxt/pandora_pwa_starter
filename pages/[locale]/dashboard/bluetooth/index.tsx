@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getI18nPaths } from '../../../../getI18nPaths'
+import { getI18nPaths } from '../../../../lib/getI18nPaths'
 import nextI18NextConfig from '../../../../next-i18next.config'
 import { GLOBAL_TRANSLATIONS } from '../../../../src/_constants/main'
 
@@ -10,9 +10,9 @@ export const getStaticPaths = () => ({
   paths: getI18nPaths(),
 })
 
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
+export const getStaticProps = async (ctx: { params: { locale: string } }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['bluetooth', ...GLOBAL_TRANSLATIONS], nextI18NextConfig)),
+    ...(await serverSideTranslations(ctx?.params?.locale, ['bluetooth', ...GLOBAL_TRANSLATIONS], nextI18NextConfig)),
   },
 })
 

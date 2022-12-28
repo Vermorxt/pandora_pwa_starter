@@ -2,14 +2,15 @@ import { MenuIcon } from '@heroicons/react/solid'
 import { Ui_Button, Ui_Label } from '@vermorxt/pandora_ui'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { logout, userIsLoggedIn } from '../../axios/auth'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { logout } from '../../axios/auth'
 import { DarkLightChanger } from '../../components/DarkLightChanger'
 import { LanguageSelector } from '../../components/LanguageSelector'
+import { StaticI18nLink } from '../../components/StaticI18nLink'
 import { ThemeChanger } from '../../components/ThemeChanger'
-import { GlobalContext, useGlobalContext } from '../../system'
+import { useGlobalContext } from '../../system'
 import { DRAWER_ID_SIDEBAR, GITHUB_REPO_LINK } from '../../_constants/main'
-import { RoutesInterface } from '../Sidebar'
 
 const GithubIconSvg = () => (
   <svg
@@ -34,24 +35,25 @@ const getSidebarContextBasedOnUrl = (url: string) => {
 const Header = () => {
   const router = useRouter()
   const [userData, setUserData] = useGlobalContext().userData
+  const { t, i18n } = useTranslation('home')
 
   useEffect(() => {
     if (!router) return
 
     const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
 
-    console.log('----->>> sideBarContext: ', sideBarContext)
+    // console.log('----->>> sideBarContext: ', sideBarContext)
 
     if (sideBarContext === 'public') {
-      console.log('is public: ', true)
+      // console.log('is public: ', true)
     }
 
     if (sideBarContext === 'dashboard') {
-      console.log('is dashboard: ', true)
+      // console.log('is dashboard: ', true)
     }
 
     if (sideBarContext === 'docs') {
-      console.log('is docs: ', true)
+      // console.log('is docs: ', true)
     }
   }, [router])
 
@@ -95,13 +97,13 @@ const Header = () => {
                 </Ui_Button>
               )}
               {!userData?.name && (
-                <Ui_Button
-                  size="small"
-                  className="btn-primary ml-2 mr-3"
-                  onClick={() => void router.push('/public/login')}
-                >
-                  Login
-                </Ui_Button>
+                <>
+                  <StaticI18nLink href="/de/public/login" locale={i18n.language === 'en' ? 'de' : 'en'}>
+                    <Ui_Button size="small" className="btn-primary ml-2 mr-3">
+                      Login
+                    </Ui_Button>
+                  </StaticI18nLink>
+                </>
               )}
             </>
           </div>

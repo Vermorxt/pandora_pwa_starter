@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useState } from 'react'
+import { StaticI18nLink } from '../../components/StaticI18nLink'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
 import SidebarFooter from './SidebarFooter'
 import { getRoutesMain } from './sidebarRoutes/routes_main'
@@ -107,10 +108,14 @@ const Sidebar: FC = props => {
                 {route?.routes?.map((routeItem, index) => (
                   <li key={index}>
                     {routeItem?.path && (
-                      <Ui_NavLink href={routeItem?.path as string}>
+                      <StaticI18nLink href={routeItem?.path as string} locale={'en'}>
                         {routeItem?.icon && <routeItem.icon className="h-5 w-5" />}
                         {routeItem?.text}
-                      </Ui_NavLink>
+                      </StaticI18nLink>
+                      // <Ui_NavLink href={routeItem?.path as string}>
+                      //   {routeItem?.icon && <routeItem.icon className="h-5 w-5" />}
+                      //   {routeItem?.text}
+                      // </Ui_NavLink>
                     )}
                   </li>
                 ))}

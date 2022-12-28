@@ -18,4 +18,5 @@ const withPWA = require('next-pwa')({
   register: true,
 })
 
-module.exports = withPWA(nextConfig)
+// module.exports = withPWA(nextConfig)
+module.exports = nextConfig

@@ -22,6 +22,7 @@ const defaultUserData: UserContextProps = {
 }
 
 const defaultAppData = {
+  language: 'de',
   debugMode: false,
   debugContextExpanded: false,
 }
