@@ -1,9 +1,5 @@
 import styles from '../styles/Home.module.css'
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import nextI18NextConfig from '../next-i18next.config'
-import { GLOBAL_TRANSLATIONS } from '../src/_constants/main'
-
 const Home = () => (
   <div className={styles.container}>
     <main className={styles.main}>
@@ -54,11 +50,5 @@ const Home = () => (
     </footer>
   </div>
 )
-
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['home', ...GLOBAL_TRANSLATIONS], nextI18NextConfig)),
-  },
-})
 
 export default Home
