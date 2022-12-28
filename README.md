@@ -12,7 +12,9 @@ Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_mediu
 
 ### installation
 
-`yarn`
+`yarn` or
+
+`yarn clean:install`
 
 ### Development
 
