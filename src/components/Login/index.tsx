@@ -50,14 +50,14 @@ const Login = () => {
     {
       name: 'email',
       value: '',
-      label: t('label_email'),
+      label: 'E-Mail',
       type: 'email',
       validation: { minLength: 3, required: true, pattern: Helper.getEmailPattern() },
     },
     {
       name: 'password',
       value: '',
-      label: t('label_password'),
+      label: 'Passwort',
       type: 'password',
       validation: { minLength: 3, required: true },
     },
@@ -125,7 +125,7 @@ const Login = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{t('login')}</Ui_Card.Title>
+            <Ui_Card.Title>Login</Ui_Card.Title>
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>
@@ -140,7 +140,7 @@ const Login = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                {t('login')}
+                Login
               </Ui_Button>
             </Ui_Form>
 
@@ -158,7 +158,7 @@ const Login = () => {
 
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{t('forgot_password')}? </small>
+                <small>Passwort vergessen? </small>
                 <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/forgot-password')}>
                   reset
                 </Ui_Button>

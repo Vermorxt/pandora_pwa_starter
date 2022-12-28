@@ -1,24 +1,24 @@
 import { InboxInIcon, LightningBoltIcon, ViewGridIcon } from '@heroicons/react/solid'
 import { RoutesMain } from '../../../_enums/routes-main'
 
-export const getRoutesMain = (t: (arg0: string) => string) => [
+export const getRoutesMain = () => [
   {
-    topic: t('main'),
+    topic: 'Main',
     routes: [
       {
         path: RoutesMain.Dashboard,
         icon: ViewGridIcon,
-        text: t('dashboard'),
+        text: 'Dashboard',
       },
       {
         path: RoutesMain.Wifi,
         icon: LightningBoltIcon,
-        text: t('wifi'),
+        text: 'Wifi',
       },
       {
         path: RoutesMain.Bluetooth,
         icon: InboxInIcon,
-        text: t('bluetooth'),
+        text: 'Bluetooth',
       },
       {
         path: null,

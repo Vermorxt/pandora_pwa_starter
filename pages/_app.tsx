@@ -1,4 +1,3 @@
-import { appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
@@ -7,7 +6,6 @@ import { FC } from 'react'
 import { LayoutProvider } from '../src/layout/LayoutProvider'
 import { GlobalContextProvider } from '../src/system'
 import '../styles/globals.scss'
-import nextI18nextConfig from './../next-i18next.config'
 import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
 
 import './../styles/imports.scss'
@@ -48,4 +46,4 @@ const WebApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default appWithTranslation(WebApp, nextI18nextConfig)
+export default WebApp

@@ -21,8 +21,6 @@ export interface UserLoginResponse {
 }
 
 const ForgotPassword = () => {
-  const { t } = useTranslation('forgot-password')
-
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
@@ -43,7 +41,7 @@ const ForgotPassword = () => {
     {
       name: 'email',
       value: '',
-      label: t('label_email'),
+      label: 'E-Mail',
       type: 'email',
       validation: { minLength: 3, required: true, pattern: Helper.getEmailPattern() },
     },
@@ -109,7 +107,7 @@ const ForgotPassword = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{t('register')}</Ui_Card.Title>
+            <Ui_Card.Title>Reset Passwort</Ui_Card.Title>
 
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
@@ -125,7 +123,7 @@ const ForgotPassword = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                {t('register')}
+                Speichern
               </Ui_Button>
             </Ui_Form>
 
@@ -149,7 +147,7 @@ const ForgotPassword = () => {
 
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{t('account_available')} </small>
+                <small>Login vorhanden? </small>
                 <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
                   login
                 </Ui_Button>

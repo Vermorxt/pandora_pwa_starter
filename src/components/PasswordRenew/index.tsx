@@ -34,7 +34,6 @@ export interface UserLoginResponse {
 }
 
 const PasswordRenew = () => {
-  const { t } = useTranslation('password-renew')
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
@@ -54,14 +53,14 @@ const PasswordRenew = () => {
     {
       name: 'password',
       value: '',
-      label: t('label_password'),
+      label: 'Passwort',
       type: 'password',
       validation: { minLength: 3, required: true },
     },
     {
       name: 'password_repeat',
       value: '',
-      label: t('label_password_repeat'),
+      label: 'Passwort wiederholen',
       type: 'password',
       validation: { minLength: 3, required: true, match: 'password' },
     },
@@ -129,7 +128,7 @@ const PasswordRenew = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{t('title')}</Ui_Card.Title>
+            <Ui_Card.Title>Passwort erneuern</Ui_Card.Title>
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>
@@ -144,7 +143,7 @@ const PasswordRenew = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                {t('login')}
+                Speichern
               </Ui_Button>
             </Ui_Form>
             {showError && (
@@ -159,7 +158,7 @@ const PasswordRenew = () => {
             )}
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{t('account_available')} </small>
+                <small>Login vorhanden? </small>
                 <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
                   login
                 </Ui_Button>

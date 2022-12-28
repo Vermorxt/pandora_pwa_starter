@@ -1,7 +1,0 @@
-{
-  "description": "Please enter username/email and password.",
-  "label_email": "Email",
-  "label_password": "Password",
-  "forgot_password": "Forgot password",
-  "login": "Login"
-}
