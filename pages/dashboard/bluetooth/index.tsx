@@ -1,8 +1,8 @@
 import { BleClient, numbersToDataView, numberToUUID, ScanResult } from '@capacitor-community/bluetooth-le'
+import { Wifi } from '@capacitor-community/wifi'
+import { Network } from '@capacitor/network'
 import { Ui_Alert, Ui_Button } from '@vermorxt/pandora_ui'
-import { BlockList } from 'net'
 import { useEffect, useState } from 'react'
-import { AnyType } from '../../../src/_types/anytype'
 
 const HEART_RATE_SERVICE = '0000180d-0000-1000-8000-00805f9b34fb'
 const HEART_RATE_MEASUREMENT_CHARACTERISTIC = '00002a37-0000-1000-8000-00805f9b34fb'
@@ -16,9 +16,30 @@ const Bluetooth = () => {
   const [btError, setBtError] = useState<string>()
   const [scanStatus, setScanStatus] = useState<string>()
   const [devices, setDevices] = useState<ScanResult[]>([])
+  const [wifi, setWifi] = useState<any>()
+  const [wifi2, setWifi2] = useState<any>({ ssid: 'nope', ip: '0.0.0.0' })
+
+  const logCurrentNetworkStatus = async () => {
+    const status = await Network.getStatus()
+
+    const ssid = await Wifi.getSSID()
+    const ip = await Wifi.getIP()
+
+    console.log('Network status:', status)
+
+    const newWifi = {
+      ssid: ssid?.ssid,
+      ip: ip?.ip,
+    }
+
+    setWifi(status)
+    setWifi2({ ...newWifi })
+  }
 
   const initBluetooth = async () => {
     try {
+      void logCurrentNetworkStatus()
+
       await BleClient.initialize()
     } catch (error) {
       console.error(error)
@@ -120,6 +141,28 @@ const Bluetooth = () => {
           <p>------</p>
         </>
       ))}
+
+      <>
+        wifi connected: {`${wifi?.connected as string}`}
+        <br />
+      </>
+      <>wifi connectionType: {wifi?.connectionType}</>
+      <p>------</p>
+
+      <>wifi 2 ssid: {`${wifi2?.ssid as string}`}</>
+      <br />
+      <>wifi 2 ip: {`${wifi2?.ip as string}`}</>
+      <p>------</p>
+      <Ui_Button variant="primary" onClick={() => void Wifi.disconnect()}>
+        Disconnect
+      </Ui_Button>
+      <br />
+      <Ui_Button
+        variant="secondary"
+        onClick={() => void Wifi.connect({ ssid: wifi2?.ssid, password: 'plasticpony97mnbvcxya' })}
+      >
+        Connect
+      </Ui_Button>
     </>
   )
 }

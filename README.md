@@ -37,6 +37,10 @@ or
 `npx cap open ios` or 
 `npx cap open android`
 
+for android you can use following command to test on an external device directly without opening android studio:
+
+`npx cap run ios -l --external`
+
 
 
 
