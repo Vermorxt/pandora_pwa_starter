@@ -86,9 +86,9 @@ const Sidebar: FC = props => {
                   {route?.topic}
                 </Ui_Collapse.Title>
                 <Ui_Collapse.Content className="!p-0">
-                  <ul key={`${routeIndex}_ul`} className="menu menu-compact flex flex-col p-0">
+                  <ul key={`${routeIndex}_ul`} className="menu flex flex-col p-0">
                     {route?.routes?.map((routeItem, index) => (
-                      <li key={index}>
+                      <li key={index} className="rounded-lg overflow-hidden mb-1">
                         {routeItem?.path && (
                           <Ui_NavLink href={routeItem?.path as string}>
                             {routeItem?.icon && <routeItem.icon className="h-5 w-5" />}

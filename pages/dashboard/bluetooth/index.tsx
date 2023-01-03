@@ -41,30 +41,16 @@ const Bluetooth = () => {
       void logCurrentNetworkStatus()
 
       await BleClient.initialize()
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
+
+      setBtError(error?.toString() as string)
     }
   }
 
   const startScan = async () => {
-    // const state = await BleClient.isEnabled()
-
-    // setScanStatus(`Starte scan ... ${state as unknown as string}`)
-
-    // await BleClient.requestLEScan({}, result => {
-    //   console.log('received new scan result', result)
-    //   setScanStatus('Devices found ...')
-    //   setDevices([...devices, result])
-    // }).catch(error => {
-    //   setScanStatus('Someting went wrong ...')
-    //   console.log('error connection')
-    // })
-
     try {
-      const device = await BleClient.requestDevice({
-        // services: [HEART_RATE_SERVICE],
-        // optionalServices: [BATTERY_SERVICE, POLAR_PMD_SERVICE],
-      })
+      const device = await BleClient.requestDevice({})
 
       // connect to device, the onDisconnect callback is optional
       await BleClient.connect(device.deviceId, deviceId => onDisconnect(deviceId))
@@ -133,7 +119,9 @@ const Bluetooth = () => {
   return (
     <>
       <h1>BLUETOOTH</h1>
-      <Ui_Button onClick={() => void startScan()}>Start scan</Ui_Button>
+      <Ui_Button onClick={() => void startScan()} size="block">
+        Start scan
+      </Ui_Button>
       <p>{scanStatus}</p>
       {devices.map(device => (
         <>
