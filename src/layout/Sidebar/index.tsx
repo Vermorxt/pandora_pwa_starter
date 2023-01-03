@@ -66,7 +66,7 @@ const Sidebar: FC = props => {
           variant="primary"
           outline
           htmlFor={DRAWER_ID_SIDEBAR}
-          className="drawer-button bg-transparent !min-h-0 h-auto px-4 py-1 lg:hidden hover:!bg-base-300"
+          className="drawer-button bg-transparent !min-h-0 h-auto px-4 py-1 lg:!hidden hover:!bg-base-300"
         >
           x
         </Ui_Label>

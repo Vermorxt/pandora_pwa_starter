@@ -52,12 +52,10 @@ export const ThemeChanger = () => {
         hover
         className="p-0 hover:!bg-transparent"
       >
-        <Ui_Dropdown.Label className="p-0 btn-ghost">
-          <div tabIndex={0} className="btn gap-1 normal-case btn-ghost bg-transparent hover:bg-transparent">
-            <ColorSwatchIcon className="h-5 w-5" />
-            <span className="hidden md:inline">Theme</span>
-            <ChevronDownIcon className="h-5 w-5" />
-          </div>
+        <Ui_Dropdown.Label className="p-0 !bg-transparent !btn-ghost hover:!bg-transparent">
+          <ColorSwatchIcon className="h-5 w-5" />
+          <span className="hidden md:inline">Theme</span>
+          <ChevronDownIcon className="h-5 w-5" />
         </Ui_Dropdown.Label>
         <Ui_Dropdown.Content className="h-96 overflow-y-auto w-52">
           <ul className={DEFAULT_DROPDOWN_CLASSNAMES}>

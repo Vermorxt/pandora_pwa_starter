@@ -28,7 +28,7 @@ export const DarkLightChanger = () => {
 
   return (
     <>
-      <label className="swap swap-rotate mx-4 btn btn-ghost normal-case">
+      <label className="swap swap-rotate mx-4 btn !btn-ghost normal-case">
         <input
           className="tooltip tooltip-left"
           data-tip={`${isDarkMode ? 'Turn on light' : 'Turn off light'}`}

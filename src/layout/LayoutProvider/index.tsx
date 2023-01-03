@@ -2,6 +2,7 @@ import { Ui_Drawer } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { Breadcrumbs } from '../../components/Breadcrumbs'
+import FooterMenu from '../../components/FooterMenu'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
 import globalSettings from '../../_settings/global.settings'
 import { Container } from '../Container'
@@ -38,6 +39,7 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
             <Breadcrumbs />
             <Content>{children}</Content>
           </Container>
+          <FooterMenu className="lg:!hidden" />
         </div>
       </Ui_Drawer.Content>
     </Ui_Drawer>

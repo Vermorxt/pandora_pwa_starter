@@ -46,7 +46,7 @@ const Header = () => {
       <div className="header sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm">
         <nav className="navbar w-full">
           <div className="flex flex-1 md:gap-1 lg:gap-2 p-0">
-            <Ui_Label as="button" size="small" htmlFor={DRAWER_ID_SIDEBAR} className="btn-ghost lg:hidden">
+            <Ui_Label as="button" size="small" htmlFor={DRAWER_ID_SIDEBAR} className="!btn-ghost lg:!hidden">
               <MenuIcon className="w-5" />
             </Ui_Label>
           </div>

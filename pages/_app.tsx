@@ -5,10 +5,12 @@ import { useRouter } from 'next/router'
 import { FC } from 'react'
 import { LayoutProvider } from '../src/layout/LayoutProvider'
 import { GlobalContextProvider } from '../src/system'
+// NOTE: keep import order to prevent style overrides
 import '../styles/globals.scss'
-import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
-
+// NOTE: keep import order to prevent style overrides
 import './../styles/imports.scss'
+// NOTE: keep import order to prevent style overrides
+import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
 
 const WebApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
