@@ -1,6 +1,7 @@
-import { Ui_Drawer } from '@vermorxt/pandora_ui'
+import { Ui_Drawer, Ui_Select, Ui_Spinner } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { userIsLoggedIn } from '../../axios/auth'
 import { Breadcrumbs } from '../../components/Breadcrumbs'
 import FooterMenu from '../../components/FooterMenu'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
@@ -10,8 +11,70 @@ import { Content } from '../Content'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 
+export type T_SideBarContext = 'docu' | 'public'
+
+export const getSidebarContextBasedOnUrl = (url: string) => {
+  const parts = url.split('/')
+
+  return parts[1] as T_SideBarContext
+}
+
 export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
   const router = useRouter()
+  const [layout, setLayout] = useState<string>()
+
+  useEffect(() => {
+    if (!router) return
+    const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
+
+    if (!userIsLoggedIn() && sideBarContext !== 'public') {
+      console.log('router: ', router)
+
+      if (router.asPath !== '/public/login') {
+        return void router.push('/public/login')
+      }
+    }
+
+    if (userIsLoggedIn()) {
+      console.log('router: ', router)
+
+      if (router.asPath === '/') {
+        return void router.push('/dashboard')
+      }
+    }
+
+    setLayout(sideBarContext)
+  }, [router])
+
+  if (!layout) {
+    return (
+      <div className="flex h-screen">
+        <Ui_Spinner />
+      </div>
+    )
+  }
+
+  if (layout === 'public') {
+    return (
+      <div
+        style={{
+          width: '100%',
+          padding: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          height: 'auto',
+          overflow: 'hidden',
+        }}
+      >
+        <Header />
+        <Container>
+          <Breadcrumbs />
+          <Content>{children}</Content>
+        </Container>
+      </div>
+    )
+  }
 
   return (
     <Ui_Drawer

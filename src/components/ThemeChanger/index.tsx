@@ -57,7 +57,7 @@ export const ThemeChanger = () => {
           <span className="hidden md:inline">Theme</span>
           <ChevronDownIcon className="h-5 w-5" />
         </Ui_Dropdown.Label>
-        <Ui_Dropdown.Content className="h-96 overflow-y-auto w-52">
+        <Ui_Dropdown.Content className="h-96 overflow-y-auto w-52" style={{ right: 0 }}>
           <ul className={DEFAULT_DROPDOWN_CLASSNAMES}>
             {THEMES.map((themeObj, index) => (
               <li key={index}>

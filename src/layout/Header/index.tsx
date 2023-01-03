@@ -2,8 +2,8 @@ import { MenuIcon } from '@heroicons/react/solid'
 import { Ui_Button, Ui_Label } from '@vermorxt/pandora_ui'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { logout } from '../../axios/auth'
+import { useEffect, useState } from 'react'
+import { logout, userIsLoggedIn } from '../../axios/auth'
 import { DarkLightChanger } from '../../components/DarkLightChanger'
 import { ThemeChanger } from '../../components/ThemeChanger'
 import { useGlobalContext } from '../../system'
@@ -20,11 +20,14 @@ const getSidebarContextBasedOnUrl = (url: string) => {
 const Header = () => {
   const router = useRouter()
   const [userData, setUserData] = useGlobalContext().userData
+  const [layout, setLayout] = useState<string>()
 
   useEffect(() => {
     if (!router) return
 
     const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
+
+    setLayout(sideBarContext)
 
     console.log('----->>> sideBarContext: ', sideBarContext)
 
@@ -46,15 +49,18 @@ const Header = () => {
       <div className="header sticky top-0 z-30 flex h-16 w-full justify-center bg-opacity-90 backdrop-blur transition-all duration-100 bg-base-100 text-base-content shadow-sm">
         <nav className="navbar w-full">
           <div className="flex flex-1 md:gap-1 lg:gap-2 p-0">
-            <Ui_Label as="button" size="small" htmlFor={DRAWER_ID_SIDEBAR} className="!btn-ghost lg:!hidden">
-              <MenuIcon className="w-5" />
-            </Ui_Label>
+            {layout !== 'public' && (
+              <Ui_Label as="button" size="small" htmlFor={DRAWER_ID_SIDEBAR} className="!btn-ghost lg:!hidden">
+                <MenuIcon className="w-5" />
+              </Ui_Label>
+            )}
           </div>
+
           <div className="flex-0 mr-1">
             <DarkLightChanger />
             <ThemeChanger />
             <>
-              {userData?.name && (
+              {userIsLoggedIn() && (
                 <Ui_Button
                   size="small"
                   className="btn-primary ml-2 mr-3"
@@ -67,7 +73,7 @@ const Header = () => {
                   Logout
                 </Ui_Button>
               )}
-              {!userData?.name && (
+              {!userIsLoggedIn() && (
                 <Ui_Button
                   size="small"
                   className="btn-primary ml-2 mr-3"

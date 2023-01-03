@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import React, { FC, useEffect, useState } from 'react'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
+import { getSidebarContextBasedOnUrl } from '../LayoutProvider'
 import SidebarFooter from './SidebarFooter'
 import { getRoutesMain } from './sidebarRoutes/routes_main'
 
@@ -18,12 +19,6 @@ export interface RoutesInterface {
 }
 
 export type T_SideBarContext = 'docu' | 'public'
-
-const getSidebarContextBasedOnUrl = (url: string) => {
-  const parts = url.split('/')
-
-  return parts[1] as T_SideBarContext
-}
 
 const Sidebar: FC = props => {
   const router = useRouter()
@@ -59,7 +54,6 @@ const Sidebar: FC = props => {
           </div>
         </Ui_NavLink>
         <span className="text-base-content lowercase text-xs ml-0"> v0.0.1</span>
-
         <Ui_Label
           as="button"
           size="small"

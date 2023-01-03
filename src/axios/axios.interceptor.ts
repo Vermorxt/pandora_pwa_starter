@@ -3,7 +3,12 @@ import { buildCancellablePromise, CancellablePromise, Cancellation } from 'real-
 import { HttpStatus } from '../_enums/http-status'
 import { AnyType } from '../_types/anytype'
 import { addSecureHeader } from './auth'
-import { CancellableAxiosMultipleProps } from './axios.interceptor copy'
+
+export interface CancellableAxiosMultipleProps {
+  name: string
+  url: string
+  response: AxiosResponse
+}
 
 const showError = (error: AxiosError, status: HttpStatus) => {
   if (axios.isCancel(error)) {

@@ -124,7 +124,7 @@ export enum UrlPublic {
   StartPage = '/public/startpage',
   PasswordReset = '/public/password-reset',
   PasswordNew = '/public/password-renew',
-  ProjectSelection = '/',
+  ProjectSelection = '/dashboard',
   NotFound = '/404',
 }
 
