@@ -123,7 +123,7 @@ const Login = () => {
   return (
     <>
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="login-card" bgBase="300" className="w-96">
+        <Ui_Card id="login-card" bgBase="200" className="w-96">
           <Ui_Card.Body>
             <Ui_Card.Title>
               <div className="flex w-full">

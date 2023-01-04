@@ -11,7 +11,7 @@ import { Content } from '../Content'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 
-export type T_SideBarContext = 'docu' | 'public'
+export type T_SideBarContext = 'docu' | 'public' | ''
 
 export const getSidebarContextBasedOnUrl = (url: string) => {
   const parts = url.split('/')
@@ -28,6 +28,10 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
 
     if (!router) return
     const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
+
+    if (!userIsLoggedIn() && sideBarContext === '') {
+      return void router.push('/public/')
+    }
 
     if (!userIsLoggedIn() && sideBarContext !== 'public') {
       console.log('router: ', router)
