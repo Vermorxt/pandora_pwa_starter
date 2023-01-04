@@ -2,7 +2,6 @@ import { Ui_BottomNavigation } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { T_SideBarContext } from '../../layout/Header'
-import { getSidebarContextBasedOnUrl } from '../../layout/LayoutProvider'
 
 export interface BottomNavigation {
   id?: number | string
