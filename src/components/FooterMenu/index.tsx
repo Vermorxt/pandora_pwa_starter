@@ -1,5 +1,8 @@
 import { Ui_BottomNavigation } from '@vermorxt/pandora_ui'
-import { FC, useState } from 'react'
+import { useRouter } from 'next/router'
+import { FC, useEffect, useState } from 'react'
+import { T_SideBarContext } from '../../layout/Header'
+import { getSidebarContextBasedOnUrl } from '../../layout/LayoutProvider'
 
 export interface BottomNavigation {
   id?: number | string
@@ -11,6 +14,22 @@ export interface BottomNavigation {
 }
 
 const FooterMenu: FC<any> = props => {
+  const router = useRouter()
+  const [hideFooterMenu, setHideFooterMenu] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (!router) return
+
+    const parts = router.asPath.split('/')
+    const sideBarContext = parts[2] as T_SideBarContext
+
+    if (sideBarContext === 'welcome') {
+      setHideFooterMenu(true)
+    } else {
+      setHideFooterMenu(false)
+    }
+  }, [router])
+
   const receiveClick = (arg: any) => {
     const n = navigation.map(navi => {
       navi.active = false
@@ -48,6 +67,10 @@ const FooterMenu: FC<any> = props => {
   ] as BottomNavigation[]
 
   const [navi, setNavi] = useState<BottomNavigation[]>(navigation)
+
+  if (hideFooterMenu) {
+    return <></>
+  }
 
   return (
     <Ui_BottomNavigation

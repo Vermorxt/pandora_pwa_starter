@@ -1,32 +1,46 @@
-import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
-import { AxiosError } from 'axios'
-import { useTranslation } from 'next-i18next'
+import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { HttpStatus } from '../../../src/_enums/http-status'
-import { AnyType } from '../../../src/_types/anytype'
-import { AxiosErrorInterface } from '../../../src/_types/api-endpoints'
+import { login } from '../../axios/auth'
 import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
 import { useGlobalContext } from '../../system'
+import { ApiAuthDefinition } from '../../_enums/api-auth-definition'
+import { HttpStatus } from '../../_enums/http-status'
+import { AnyType } from '../../_types/anytype'
+import { AxiosErrorInterface } from '../../_types/api-endpoints'
+
+export interface ProductRole {
+  product: string
+  role: string
+}
+export interface UserLogin {
+  token?: string
+  name: string
+  isSuperAdmin: boolean
+  roles: ProductRole[]
+  profileImageUrl?: string
+  currentProductRole?: string
+}
 
 export interface UserLoginResponse {
-  data?: any
+  data?: UserLogin
   error?: AxiosError | null
 }
 
-const Register = () => {
+const SetPasswordAfterRegistration = () => {
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
   const [finishedUpdate, setFinishedUpdate] = useState<boolean>(false)
 
   const [showError, setShowError] = useState(false)
-  const [registerFailed, setRegisterFailed] = useState(false)
-  const [registerFinished, setRegisterFinished] = useState<string>()
+  const [succeedSetPassword, setSucceedSetPassword] = useState(false)
+  const [loginFailed, setLoginFailed] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const [userData, setUserData] = useGlobalContext().userData
@@ -37,11 +51,18 @@ const Register = () => {
 
   const formInitialValues = [
     {
-      name: 'email',
+      name: 'password',
       value: '',
-      label: 'E-Mail',
-      type: 'email',
-      validation: { minLength: 3, required: true, pattern: Helper.getEmailPattern() },
+      label: 'Passwort',
+      type: 'password',
+      validation: { minLength: 3, required: true },
+    },
+    {
+      name: 'password_repeat',
+      value: '',
+      label: 'Passwort wiederholen',
+      type: 'password',
+      validation: { minLength: 3, required: true, match: 'password' },
     },
   ] as InitialFormValues[]
 
@@ -50,38 +71,50 @@ const Register = () => {
 
     if (error?.request?.status === HttpStatus.UNAUTHORIZED) {
       setShowError(false)
-      setRegisterFailed(true)
+      setLoginFailed(true)
     } else {
       setShowError(true)
     }
   }
 
-  const registerUser = (data: AnyType) => {
-    setRegisterFailed(false)
+  const resetPassword = async (data: AnyType) => {
+    setLoginFailed(false)
     setFinishedUpdate(false)
+    setSucceedSetPassword(true)
+    setLoading(false)
 
-    // const apiResponse = await axios
-    //   .post(`${process.env.NEXT_PUBLIC_API_URL as string}${ApiAuthDefinition.POST_AUTH}`, JSON.stringify(data))
-    //   .catch((error: AxiosError) => handleError(error))
+    setTimeout(() => {
+      setFinishedUpdate(true)
 
-    // if (!apiResponse) return
+      void router.push('/public/login/')
+    }, 3000)
 
-    // const userData = apiResponse as unknown as UserLoginResponse
+    return
+
+    const apiResponse = await axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL as string}${ApiAuthDefinition.POST_AUTH}`, JSON.stringify(data))
+      .catch((error: AxiosError) => handleError(error))
+
+    if (!apiResponse) return
+
+    const userData = apiResponse as unknown as UserLoginResponse
+
+    setUserData({ ...userData?.data })
 
     setLoading(false)
     setFinishedUpdate(true)
 
     setTimeout(() => {
-      setLoading(false)
+      void login(userData.data, false)
 
-      setRegisterFinished('Wir haben dir eine E-mail mit weiteren Instruktionen gesandt.')
+      setLoading(false)
     }, 500)
   }
 
   const handleSubmit = useSubmit((values, errors, touched) => {
     setLoading(true)
     setShowError(false)
-    setRegisterFailed(false)
+    setLoginFailed(false)
 
     const checkForm = formIsValid(values, formInitialValues)
 
@@ -97,7 +130,7 @@ const Register = () => {
       return
     }
 
-    void registerUser(values as AnyType)
+    void resetPassword(values as AnyType)
   })
 
   return (
@@ -105,8 +138,8 @@ const Register = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{'Registrierung'}</Ui_Card.Title>
-
+            <Ui_Card.Title>Passwort festlegen</Ui_Card.Title>
+            <p>Bitte lege dein Passwort fest!</p>
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>
@@ -121,31 +154,27 @@ const Register = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                Registrieren
+                Speichern
               </Ui_Button>
             </Ui_Form>
-
+            {succeedSetPassword && (
+              <Ui_Alert variant="success">
+                <span>Super, das hat geklappt. Bitte logge dich ein!</span>
+              </Ui_Alert>
+            )}
             {showError && (
               <Ui_Alert variant="error">
                 <span>Oh, something went wrong.</span>
               </Ui_Alert>
             )}
-
-            {registerFailed && (
+            {loginFailed && (
               <Ui_Alert variant="error">
-                <span>Oops, registration failed.</span>
+                <span>Oops, email or password does not match.</span>
               </Ui_Alert>
             )}
-
-            {registerFinished && (
-              <Ui_Alert variant="success">
-                <span>{registerFinished}</span>
-              </Ui_Alert>
-            )}
-
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{'Login vorhanden?'} </small>
+                <small>Login vorhanden? </small>
                 <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
                   login
                 </Ui_Button>
@@ -158,4 +187,4 @@ const Register = () => {
   )
 }
 
-export default React.memo(Register)
+export default React.memo(SetPasswordAfterRegistration)

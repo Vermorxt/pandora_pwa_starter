@@ -9,7 +9,7 @@ import { ThemeChanger } from '../../components/ThemeChanger'
 import { useGlobalContext } from '../../system'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
 
-export type T_SideBarContext = 'docu' | 'public' | 'dashboard' | 'docs'
+export type T_SideBarContext = 'docu' | 'public' | 'dashboard' | 'docs' | 'welcome'
 
 const getSidebarContextBasedOnUrl = (url: string) => {
   const parts = url.split('/')
