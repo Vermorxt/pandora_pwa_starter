@@ -125,7 +125,14 @@ const Login = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>Login</Ui_Card.Title>
+            <Ui_Card.Title>
+              <div className="flex w-full">
+                <div style={{ flexGrow: 1 }}>Login</div>
+                <Ui_Button size="small" variant="ghost" onClick={() => void router.push('/public/register')}>
+                  Neu anmelden
+                </Ui_Button>
+              </div>
+            </Ui_Card.Title>
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>

@@ -24,6 +24,8 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
   const [layout, setLayout] = useState<string>()
 
   useEffect(() => {
+    console.log('userIsLoggedIn: ', userIsLoggedIn())
+
     if (!router) return
     const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
 

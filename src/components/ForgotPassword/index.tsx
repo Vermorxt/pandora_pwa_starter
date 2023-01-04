@@ -123,7 +123,7 @@ const ForgotPassword = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                Speichern
+                Absenden
               </Ui_Button>
             </Ui_Form>
 

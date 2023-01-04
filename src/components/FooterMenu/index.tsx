@@ -53,7 +53,7 @@ const FooterMenu: FC<any> = props => {
     <Ui_BottomNavigation
       className={props?.className}
       navigation={navi}
-      bordered={true}
+      bordered="true"
       size="mini"
       bgColor="none"
       variant="none"

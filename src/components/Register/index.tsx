@@ -1,11 +1,9 @@
 import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
-import axios, { AxiosError } from 'axios'
+import { AxiosError } from 'axios'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { login, logout } from '../../../src/axios/auth'
-import { ApiAuthDefinition } from '../../../src/_enums/api-auth-definition'
 import { HttpStatus } from '../../../src/_enums/http-status'
 import { AnyType } from '../../../src/_types/anytype'
 import { AxiosErrorInterface } from '../../../src/_types/api-endpoints'
@@ -13,7 +11,7 @@ import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
-import { GlobalContext, useGlobalContext } from '../../system'
+import { useGlobalContext } from '../../system'
 
 export interface UserLoginResponse {
   data?: any
@@ -21,8 +19,6 @@ export interface UserLoginResponse {
 }
 
 const Register = () => {
-  const { t } = useTranslation('register')
-
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
@@ -43,7 +39,7 @@ const Register = () => {
     {
       name: 'email',
       value: '',
-      label: t('label_email'),
+      label: 'E-Mail',
       type: 'email',
       validation: { minLength: 3, required: true, pattern: Helper.getEmailPattern() },
     },
@@ -109,7 +105,7 @@ const Register = () => {
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
-            <Ui_Card.Title>{t('register')}</Ui_Card.Title>
+            <Ui_Card.Title>{'Registrierung'}</Ui_Card.Title>
 
             <Ui_Form handleSubmit={handleSubmit} id="login">
               {formInitialValues?.map((initials, i) => (
@@ -125,7 +121,7 @@ const Register = () => {
                 name="submit"
                 style={{ marginTop: 20, marginBottom: 10 }}
               >
-                {t('register')}
+                Registrieren
               </Ui_Button>
             </Ui_Form>
 
@@ -149,7 +145,7 @@ const Register = () => {
 
             <Ui_Card.Actions>
               <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{t('account_available')} </small>
+                <small>{'Login vorhanden?'} </small>
                 <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
                   login
                 </Ui_Button>
