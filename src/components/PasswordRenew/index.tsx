@@ -129,12 +129,7 @@ const PasswordRenew = () => {
         <Ui_Card id="login-card" bgBase="300" className="w-96">
           <Ui_Card.Body>
             <Ui_Card.Title>Passwort erneuern</Ui_Card.Title>
-            <Ui_Form handleSubmit={handleSubmit} id="login">
-              {formInitialValues?.map((initials, i) => (
-                <Ui_Form.Field key={i}>
-                  <Ui_Form.Element {...{ initials }} formErrors={formErrors} />
-                </Ui_Form.Field>
-              ))}
+            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="password-renew">
               <Ui_Button
                 loading={loading}
                 size="block"

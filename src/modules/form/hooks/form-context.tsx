@@ -34,7 +34,7 @@ export interface Ui_FormElementProps {
 export const Ui_FormContext = createContext({ forceTouch: false })
 
 const Ui_Form = (props: Ui_FormProps) => {
-  const { children, className, id, handleSubmit } = props
+  const { formInitialValues, children, className, id, handleSubmit } = props
 
   const [forceTouch, setForceTouch] = useState(false)
 
@@ -51,7 +51,7 @@ const Ui_Form = (props: Ui_FormProps) => {
       return handleSubmit ? handleSubmit(event) : null
     }
 
-    const checkForm = formIsValid(values, props?.formInitialValues as InitialFormValues[])
+    const checkForm = formIsValid(values, formInitialValues as InitialFormValues[])
 
     console.log('form is valid: ', checkForm)
 
@@ -72,6 +72,11 @@ const Ui_Form = (props: Ui_FormProps) => {
         onSubmit={event => handleSubmitProxy(event)}
         id={id ? id : `form_${Math.random()}`}
       >
+        {formInitialValues?.map((initials, i) => (
+          <Ui_Form.Field key={i}>
+            <Ui_Form.Element {...{ initials }} />
+          </Ui_Form.Field>
+        ))}
         {children}
       </form>
     </Ui_FormContext.Provider>

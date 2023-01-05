@@ -71,11 +71,6 @@ const HouseholdsPage = () => {
             <h1>Neuer haushalt</h1>
             <p>Bitte bestimme einen Namen und den Standort!</p>
             <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
-              {formInitialValues?.map((initials, i) => (
-                <Ui_Form.Field key={i}>
-                  <Ui_Form.Element {...{ initials }} />
-                </Ui_Form.Field>
-              ))}
               <Ui_Button
                 disabled={disabled}
                 htmlFor="login"
