@@ -76,6 +76,10 @@ const Register = () => {
 
       setRegisterFinished('Wir haben dir eine E-mail mit weiteren Instruktionen gesandt.')
     }, 500)
+
+    setTimeout(() => {
+      void router.push('/public/finish-registration')
+    }, 3000)
   }
 
   const handleSubmit = useSubmit((values, errors, touched) => {
