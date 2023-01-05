@@ -1,7 +1,7 @@
 import { Ui_BottomNavigation } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
-import { T_SideBarContext } from '../../layout/Header'
+import { T_SideBarContext } from '../Header'
 
 export interface BottomNavigation {
   id?: number | string
@@ -12,28 +12,23 @@ export interface BottomNavigation {
   icon?: string
 }
 
+export type T_SideBarContext2 = 'households' | 'statistics' | 'settings'
+
 const FooterMenu: FC<any> = props => {
   const router = useRouter()
   const [hideFooterMenu, setHideFooterMenu] = useState<boolean>(false)
 
-  useEffect(() => {
-    if (!router) return
-
-    const parts = router.asPath.split('/')
-    const sideBarContext = parts[2] as T_SideBarContext
-
-    if (sideBarContext === 'welcome') {
-      setHideFooterMenu(true)
-    } else {
-      setHideFooterMenu(false)
-    }
-  }, [router])
-
-  const receiveClick = (arg: any) => {
+  const setActiveTabDefault = (sideBarContext: T_SideBarContext2) => {
     const n = navigation.map(navi => {
       navi.active = false
 
-      if (navi.id === arg?.id) {
+      if (sideBarContext === 'households' && navi.id === 1) {
+        navi.active = true
+      }
+      if (sideBarContext === 'statistics' && navi.id === 2) {
+        navi.active = true
+      }
+      if (sideBarContext === 'settings' && navi.id === 3) {
         navi.active = true
       }
 
@@ -41,6 +36,34 @@ const FooterMenu: FC<any> = props => {
     })
 
     setNavi([...n])
+  }
+
+  useEffect(() => {
+    if (!router) return
+
+    const parts = router.asPath.split('/')
+    const sideBarContext = parts[2] as T_SideBarContext
+    const sideBarContext2 = parts[2] as T_SideBarContext2
+
+    if (sideBarContext === 'welcome') {
+      setHideFooterMenu(true)
+    } else {
+      setHideFooterMenu(false)
+
+      setActiveTabDefault(sideBarContext2)
+    }
+  }, [router])
+
+  const receiveClick = (arg: any) => {
+    if (arg?.id === 1) {
+      void router.push('/dashboard/households')
+    }
+    if (arg?.id === 2) {
+      void router.push('/dashboard/statistics')
+    }
+    if (arg?.id === 3) {
+      void router.push('/dashboard/settings')
+    }
   }
 
   const navigation = [

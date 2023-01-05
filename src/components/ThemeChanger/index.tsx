@@ -1,6 +1,7 @@
 import { ChevronDownIcon, ColorSwatchIcon } from '@heroicons/react/solid'
 import { Ui_Dropdown } from '@vermorxt/pandora_ui'
 import { useTheme } from 'next-themes'
+import { useEffect } from 'react'
 
 export interface UseThemeProps {
   theme: string
@@ -8,6 +9,7 @@ export interface UseThemeProps {
 }
 
 export const THEMES = [
+  { name: 'wireframe', icon: '📝', mode: 'light', active: true },
   { name: 'light', icon: '🌝', mode: 'light' },
   { name: 'dark', icon: '🌚', mode: 'dark' },
   { name: 'cupcake', icon: '🧁', mode: 'light' },
@@ -25,7 +27,6 @@ export const THEMES = [
   { name: 'lofi', icon: '👓', mode: 'light' },
   { name: 'pastel', icon: '🖍', mode: 'light' },
   { name: 'fantasy', icon: '🧚‍♀️', mode: 'light' },
-  { name: 'wireframe', icon: '📝', mode: 'light' },
   { name: 'black', icon: '🏴', mode: 'dark' },
   { name: 'luxury', icon: '💎', mode: 'dark' },
   { name: 'dracula', icon: '🧛‍♂️', mode: 'dark' },
@@ -43,6 +44,10 @@ export const DEFAULT_DROPDOWN_CLASSNAMES = 'menu menu-compact p-4'
 
 export const ThemeChanger = () => {
   const { theme, setTheme } = useTheme() as UseThemeProps
+
+  useEffect(() => {
+    setTheme('wireframe')
+  }, [])
 
   return (
     <>

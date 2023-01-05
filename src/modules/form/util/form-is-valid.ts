@@ -17,7 +17,7 @@ export const formIsValid = (formValues: AnyType, initialValues: InitialFormValue
   for (const key in formValues) {
     if (formValues.hasOwnProperty.call(formValues, key)) {
       const inputValue = formValues[key]
-      const initialField = initialValues.find(i => i.name === key)
+      const initialField = initialValues?.find(i => i.name === key)
       const validation = initialField?.validation as ValidationOptions
 
       const errorMessage = getFieldError(inputValue as string, validation, initialField?.name)

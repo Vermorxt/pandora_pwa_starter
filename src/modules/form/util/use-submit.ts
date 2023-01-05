@@ -1,5 +1,5 @@
-import { FormEvent } from 'react'
 import { Helper } from '@vermorxt/pandora_utils'
+import { FormEvent } from 'react'
 import { AnyType } from '../../../_types/anytype'
 
 const isCheckbox = (element: AnyType): boolean => element.type === 'checkbox'
@@ -59,8 +59,9 @@ const getFormValues = (event: FormEvent<HTMLFormElement>) => {
 export const useSubmit =
   (fn: (values: AnyType, errors: string[], touched: string[]) => void) => (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    event.stopPropagation()
 
-    const formNodeList = event?.target as unknown as NodeList
+    const formNodeList = event?.currentTarget as unknown as NodeList
     const formElements = Array.from(formNodeList) as unknown as HTMLInputElement[]
 
     const errors = formElements

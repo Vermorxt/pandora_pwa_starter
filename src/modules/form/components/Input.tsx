@@ -1,4 +1,5 @@
 import React, { FC, InputHTMLAttributes, useEffect, useState } from 'react'
+import { useFormContext } from '../hooks/form-context'
 import Text from '../text'
 import { formErrors } from '../util/form-is-valid'
 import { getFieldError } from '../util/validation'
@@ -12,10 +13,13 @@ export interface Ui_FormPropsInput extends InputHTMLAttributes<HTMLInputElement>
   altLabel?: string
   validation?: ValidationOptions
   formErrors?: formErrors
+  forceTouch?: boolean
 }
 
 export const Input: FC<Ui_FormPropsInput> = React.memo((props: Ui_FormPropsInput) => {
   const { label, altLabel, name, placeholder, value, type, validation, formErrors } = props
+
+  const { forceTouch } = useFormContext()
 
   const [inputValue, setInputValue] = useState<string>(value as string)
   const [touched, setTouched] = useState(false)
@@ -26,6 +30,14 @@ export const Input: FC<Ui_FormPropsInput> = React.memo((props: Ui_FormPropsInput
     setInputValue(option)
     setTouched(true)
   }
+
+  useEffect(() => {
+    // NOTE: handle initial submit execution and force untouched inputs
+    const errorMessage = getFieldError(inputValue, validation as ValidationOptions, name)
+    setDisplayErrorMessage(touched && errorMessage?.message)
+
+    setTouched(true)
+  }, [forceTouch])
 
   useEffect(() => {
     if (formErrors) {

@@ -1,10 +1,9 @@
 import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
 import axios, { AxiosError } from 'axios'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
-import { login, logout } from '../../../src/axios/auth'
+import React, { useState } from 'react'
+import { login } from '../../../src/axios/auth'
 import { ApiAuthDefinition } from '../../../src/_enums/api-auth-definition'
 import { HttpStatus } from '../../../src/_enums/http-status'
 import { AnyType } from '../../../src/_types/anytype'
@@ -13,7 +12,7 @@ import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
-import { GlobalContext, useGlobalContext } from '../../system'
+import { useGlobalContext } from '../../system'
 
 export interface ProductRole {
   product: string
@@ -34,7 +33,6 @@ export interface UserLoginResponse {
 }
 
 const Login = () => {
-  const { t } = useTranslation('login')
   const router = useRouter()
 
   const [formErrors, setFormErrors] = useState<formErrors>()
@@ -133,7 +131,7 @@ const Login = () => {
                 </Ui_Button>
               </div>
             </Ui_Card.Title>
-            <Ui_Form handleSubmit={handleSubmit} id="login">
+            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
               {formInitialValues?.map((initials, i) => (
                 <Ui_Form.Field key={i}>
                   <Ui_Form.Element {...{ initials }} formErrors={formErrors} />
