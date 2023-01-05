@@ -3,15 +3,15 @@ import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { userIsLoggedIn } from '../../axios/auth'
 import { Breadcrumbs } from '../../components/Breadcrumbs'
-import FooterMenu from '../FooterMenu'
 import { DRAWER_ID_SIDEBAR } from '../../_constants/main'
 import globalSettings from '../../_settings/global.settings'
 import { Container } from '../Container'
 import { Content } from '../Content'
+import FooterMenu from '../FooterMenu'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
 
-export type T_SideBarContext = 'docu' | 'public' | ''
+export type T_SideBarContext = 'dashboard' | 'public' | ''
 
 export const getSidebarContextBasedOnUrl = (url: string) => {
   const parts = url.split('/')

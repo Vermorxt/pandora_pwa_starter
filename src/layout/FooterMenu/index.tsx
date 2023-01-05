@@ -12,7 +12,7 @@ export interface BottomNavigation {
   icon?: string
 }
 
-export type T_SideBarContext2 = 'households' | 'statistics' | 'settings'
+export type T_SideBarContext2 = 'households' | 'statistics' | 'settings' | 'welcome'
 
 const FooterMenu: FC<any> = props => {
   const router = useRouter()
