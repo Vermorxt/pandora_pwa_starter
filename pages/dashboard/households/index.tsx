@@ -77,6 +77,11 @@ const HouseholdsPage = () => {
       <h1>Haushalte</h1>
       <div style={{ marginTop: 20, marginBottom: 40 }}>
         <div style={{ marginBottom: 40 }}>
+          {houseHold.length <= 0 && (
+            <p className="py-6">
+              Jedes Balkonkraftwerk kann einem Haushalt zugeordnet werden. Bitte füge einen Haushalt hinzu!
+            </p>
+          )}
           {houseHold.length > 0 &&
             houseHold.map((house, index) => (
               <Ui_Stat key={index} style={{ width: '100%', marginBottom: 20 }}>

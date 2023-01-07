@@ -3,6 +3,7 @@ import { Helper } from '@vermorxt/pandora_utils'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { UserApiResponse } from '../../../pages/api/public/login'
 import { login } from '../../../src/axios/auth'
 import { ApiAuthDefinition } from '../../../src/_enums/api-auth-definition'
 import { HttpStatus } from '../../../src/_enums/http-status'
@@ -13,24 +14,6 @@ import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
 import { useGlobalContext } from '../../system'
-
-export interface ProductRole {
-  product: string
-  role: string
-}
-export interface UserLogin {
-  token?: string
-  name: string
-  isSuperAdmin: boolean
-  roles: ProductRole[]
-  profileImageUrl?: string
-  currentProductRole?: string
-}
-
-export interface UserLoginResponse {
-  data?: UserLogin
-  error?: AxiosError | null
-}
 
 const Login = () => {
   const router = useRouter()
@@ -82,7 +65,7 @@ const Login = () => {
 
     if (!apiResponse) return
 
-    const userData = apiResponse as unknown as UserLoginResponse
+    const userData = apiResponse as unknown as UserApiResponse
 
     setUserData({ ...userData?.data })
 

@@ -19,7 +19,12 @@ const AnamnesePage = () => {
             dahingehend optimieren und für die bestmögliche Effizienz sorgen.
           </p>
 
-          <Ui_Button className="mb-4" variant="secondary" size="full" onClick={() => void router.push('/dashboard/')}>
+          <Ui_Button
+            className="mb-4"
+            variant="secondary"
+            size="full"
+            onClick={() => void router.push('/dashboard/households')}
+          >
             Profil speichern
           </Ui_Button>
         </div>
