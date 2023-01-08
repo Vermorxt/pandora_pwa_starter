@@ -1,8 +1,8 @@
-import { ValidationOptions } from '../_types/form/validation-options'
 import React, { FC, InputHTMLAttributes, useEffect, useState } from 'react'
 import Text from '../text'
 import { formErrors } from '../util/form-is-valid'
 import { getFieldError } from '../util/validation'
+import { ValidationOptions } from '../_types/form/validation-options'
 
 export interface Ui_FormPropsRadio extends InputHTMLAttributes<HTMLTextAreaElement> {
   defaultValue?: string
@@ -53,9 +53,9 @@ export const Radio: FC<Ui_FormPropsRadio> = React.memo((props: Ui_FormPropsRadio
                 name={name}
                 value={inputValue}
                 className={`
-              radio checked:bg-primary         
-              ${touched ? 'input-touched' : ''}
-              `}
+                  radio checked:bg-primary         
+                  ${touched ? 'input-touched' : ''}
+                `}
                 checked={inputValue === option}
                 onChange={() => change(option)}
               />

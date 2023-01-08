@@ -78,7 +78,7 @@ export const Input: FC<Ui_FormPropsInput> = React.memo((props: Ui_FormPropsInput
           value={inputValue || ''}
           placeholder={placeholder}
           onChange={event => change(event.currentTarget.value)}
-          onKeyUp={event => change(event.currentTarget.value)}
+          // onKeyUp={event => change(event.currentTarget.value)}
           onBlur={() => setTouched(true)}
         />
         {type === 'password' && (

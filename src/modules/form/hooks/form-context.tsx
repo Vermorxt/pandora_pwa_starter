@@ -53,8 +53,6 @@ const Ui_Form = (props: Ui_FormProps) => {
 
     const checkForm = formIsValid(values, formInitialValues as InitialFormValues[])
 
-    console.log('form is valid: ', checkForm)
-
     if (checkForm?.isValid === false) {
       setForceTouch(true)
     }

@@ -1,10 +1,10 @@
-import { Ui_Alert,Ui_Button,Ui_Card,Ui_Flex,Ui_FlexGrow } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
-import axios,{ AxiosError } from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
-import React,{ useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { login } from '../../axios/auth'
-import { formIsValid,useSubmit } from '../../modules/form'
+import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
@@ -136,7 +136,7 @@ const SetPasswordAfterRegistration = () => {
   return (
     <>
       <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="login-card" bgBase="300" className="w-96">
+        <Ui_Card id="set-password-card" bgBase="200" className="w-96">
           <Ui_Card.Body>
             <Ui_Card.Title>Passwort festlegen</Ui_Card.Title>
             <p>Bitte lege dein Passwort fest!</p>

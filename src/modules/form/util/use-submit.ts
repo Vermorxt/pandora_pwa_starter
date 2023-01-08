@@ -61,7 +61,7 @@ export const useSubmit =
     event.preventDefault()
     event.stopPropagation()
 
-    const formNodeList = event?.currentTarget as unknown as NodeList
+    const formNodeList = event?.target as unknown as NodeList
     const formElements = Array.from(formNodeList) as unknown as HTMLInputElement[]
 
     const errors = formElements

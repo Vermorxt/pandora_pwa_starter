@@ -8,20 +8,20 @@ const IntroPage = () => {
     <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-4xl font-bold">
             Willkommen! Lass uns loslegen.
             <br />
           </h1>
           <small>Du machst das gut!</small>
-          <p className="py-6">
+          <p className="py-4">
             Um die Solarenergie bestmöglich zu verteilen und keine überschüssige Energie kostenlos ins öffentliche Netz
             zu speisen, möchten wir ein Profil anlegen, das die bestmögliche Effizienz gewährleistet!
           </p>
-          <p className="py-6">
+          <p className="py-4">
             Der geladene Akku wird aktiviert, sobald Verbraucher Energie benötigen. Anfangs passiert das anhand deines
             Energie Nutzungs-Profils. Später anhand der verbrauchten Energie.
           </p>
-          <p className="py-6">Ist das ok für dich?</p>
+          <p className="py-4">Ist das ok für dich?</p>
 
           <Ui_Button
             className="mb-4"

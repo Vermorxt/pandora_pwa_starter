@@ -8,13 +8,13 @@ const AnamnesePage = () => {
     <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
         <div className="max-w-md">
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-4xl font-bold">
             Wann bist du zu hause?
             <br />
           </h1>
           <small>Du machst das gut!</small>
-          <p className="py-6">Bitte wähle folgende Profile aus!</p>
-          <p className="py-6">
+          <p className="py-4">Bitte wähle folgende Profile aus!</p>
+          <p className="py-4">
             Wenn du zu Hause bist, werden voraussichtlich mehr Verbraucher aktiv sein. Wir werden die Einstellungen
             dahingehend optimieren und für die bestmögliche Effizienz sorgen.
           </p>

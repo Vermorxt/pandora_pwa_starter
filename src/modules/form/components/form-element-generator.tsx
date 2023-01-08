@@ -17,6 +17,9 @@ interface Ui_FormElementGeneratorProps extends InputHTMLAttributes<HTMLFormEleme
 
 export const FormElementGenerator: FC<Ui_FormElementGeneratorProps> = (props: Ui_FormElementGeneratorProps) => {
   const { initials, formErrors } = props
+
+  console.log('initial types: ', RADIO_TYPES.includes(initials.type), initials)
+
   return (
     <>
       {INPUT_TYPES.includes(initials?.type) && (

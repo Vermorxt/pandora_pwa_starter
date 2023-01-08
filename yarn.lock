@@ -2296,10 +2296,10 @@
     "@typescript-eslint/types" "5.48.0"
     eslint-visitor-keys "^3.3.0"
 
-"@vermorxt/pandora_ui@0.0.62":
-  version "0.0.62"
-  resolved "https://npm.pkg.github.com/download/@vermorxt/pandora_ui/0.0.62/11f2c2cc85bfcd073b6d28bdfbb94ffd6089c803#11f2c2cc85bfcd073b6d28bdfbb94ffd6089c803"
-  integrity sha512-GkmgjCGL1tvX2E71nUL7SOVhfN4byn3byoGSp6ZcQspFGlukt6G8VgGQcqy+mzS4djGwhOr7FucRXFghA7qNqA==
+"@vermorxt/pandora_ui@0.0.65":
+  version "0.0.65"
+  resolved "https://npm.pkg.github.com/download/@vermorxt/pandora_ui/0.0.65/cbd578d2f735558f96fceb3872a3599e3e5a0f51#cbd578d2f735558f96fceb3872a3599e3e5a0f51"
+  integrity sha512-bO7N8DEFNByFVZaVfzsTTZ6rW8jgcsrdlK5zvdwmakLkzBmjAoEXmUHbSgHWlaQ+ilNpbotbGjhIDBhps4ucWw==
   dependencies:
     "@heroicons/react" "^1.0.6"
     "@vermorxt/pandora_utils" "^0.0.2"
