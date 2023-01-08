@@ -42,6 +42,14 @@ for android you can use following command to test on an external device directly
 `npx cap run ios -l --external`
 
 
+## Trobleshooting
+
+To have bluetooth available on web, you must use chrome browser and enable experimental web features:
+
+`chrome://flags/#enable-experimental-web-platform-features`
+
+
+
 
 
 

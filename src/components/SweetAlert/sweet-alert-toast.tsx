@@ -5,7 +5,7 @@ const SweetAlertToast = (options: SweetAlertOptions) => {
     toast: true,
     position: options.position || 'bottom',
     showConfirmButton: options.showConfirmButton || false,
-    timer: options.timer || 500000,
+    timer: options.timer || 3000,
     timerProgressBar: options.timerProgressBar || false,
     heightAuto: false,
     background: options.background || `hsl(var(--b3)`,

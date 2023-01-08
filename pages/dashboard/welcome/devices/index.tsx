@@ -124,7 +124,7 @@ const DevicesPage = () => {
             </Ui_Button> */}
             <Ui_Button
               size="block"
-              className={`btn-primary`}
+              className={`btn-secondary`}
               type="submit"
               name="submit"
               style={{ marginTop: 20, marginBottom: 10 }}

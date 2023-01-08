@@ -1,0 +1,23 @@
+.react-datepicker__input-container input {
+  @apply input;
+  @apply input-secondary;
+  // @apply input-sm;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  max-height: 48px;
+
+  .react-datepicker__input-container input {
+    width: 100%;
+    margin-bottom: 10px;
+    border-left: 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  > span {
+    @apply bg-secondary;
+    @apply text-secondary-content;
+  }
+}

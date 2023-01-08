@@ -1,6 +1,6 @@
 import { Ui_BottomNavigation } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC,useEffect,useState } from 'react'
 import { T_SideBarContext } from '../Header'
 
 export interface BottomNavigation {
@@ -102,7 +102,7 @@ const FooterMenu: FC<any> = props => {
       size="mini"
       bgColor="none"
       variant="none"
-      activeColor="primary"
+      activeColor="secondary"
       rounded={true}
       shadow={true}
     />

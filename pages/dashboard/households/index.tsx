@@ -86,12 +86,18 @@ const HouseholdsPage = () => {
             houseHold.map((house, index) => (
               <Ui_Stat key={index} style={{ width: '100%', marginBottom: 20 }}>
                 <Ui_Stat.Item>
-                  <Ui_Stat.Title>{house?.address}</Ui_Stat.Title>
-                  <Ui_Stat.Value>{house?.name}</Ui_Stat.Value>
-                  <Ui_Stat.Description>Ersttellt: {dayjs().format('DD.MM.YYYY HH:mm')} </Ui_Stat.Description>
+                  <Ui_Stat.Title className="_ellipsis">{house?.address}</Ui_Stat.Title>
+                  <Ui_Stat.Value className="_ellipsis" style={{ fontSize: '1.5rem' }}>
+                    {house?.name}
+                  </Ui_Stat.Value>
+                  <Ui_Stat.Description className="_ellipsis">
+                    Ersttellt: {dayjs().format('DD.MM.YYYY HH:mm')}{' '}
+                  </Ui_Stat.Description>
                 </Ui_Stat.Item>
                 <Ui_Stat.Item className="flex justify-center items-center">
-                  <Ui_Button size="small">Verwalten</Ui_Button>
+                  <Ui_Button size="small" variant="ghost" outline>
+                    Verwalten
+                  </Ui_Button>
                 </Ui_Stat.Item>
               </Ui_Stat>
             ))}
@@ -104,7 +110,7 @@ const HouseholdsPage = () => {
           size="large"
           buttonText="Haushalt hinzufügen"
           labelStyle={{ width: '100%' }}
-          labelClassName="btn btn-primary btn-outline"
+          labelClassName="btn btn-secondary btn-outline"
           className="custom"
         >
           <>
@@ -112,6 +118,7 @@ const HouseholdsPage = () => {
             <p>Bitte bestimme einen Namen und den Standort!</p>
             <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
               <Ui_Button
+                variant="secondary"
                 disabled={disabled}
                 htmlFor="login"
                 type="submit"
