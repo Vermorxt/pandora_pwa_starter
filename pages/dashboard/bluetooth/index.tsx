@@ -18,30 +18,9 @@ const Bluetooth = () => {
   const [scanStatus, setScanStatus] = useState<string>()
   const [devices, setDevices] = useState<ScanResult[]>([])
   const [singleDevice, setSingleDevice] = useState<BleDevice & { battery?: number }>()
-  const [wifi, setWifi] = useState<any>()
-  const [wifi2, setWifi2] = useState<any>({ ssid: 'nope', ip: '0.0.0.0' })
-
-  const logCurrentNetworkStatus = async () => {
-    const status = await Network.getStatus()
-
-    const ssid = await Wifi.getSSID()
-    const ip = await Wifi.getIP()
-
-    console.log('Network status:', status)
-
-    const newWifi = {
-      ssid: ssid?.ssid,
-      ip: ip?.ip,
-    }
-
-    setWifi(status)
-    setWifi2({ ...newWifi })
-  }
 
   const initBluetooth = async () => {
     try {
-      void logCurrentNetworkStatus()
-
       await BleClient.initialize()
 
       console.log('Bluetooth initialized')
@@ -197,61 +176,16 @@ const Bluetooth = () => {
       // NOTE: only available on android
       // const btSettings = await BleClient.openBluetoothSettings()
       // console.log(5, ' --> btSettings device', btSettings)
-
-      return
-
-      const device = await BleClient.requestDevice({ optionalServices: ['162348d9-d5a8-4870-8086-8e152fd06a92'] })
-
-      await BleClient.disconnect(device.deviceId)
-      // connect to device, the onDisconnect callback is optional
-      await BleClient.connect(device.deviceId, deviceId => onDisconnect(deviceId))
-
-      await BleClient.getServices(device.deviceId).then(services => {
-        console.log('services BT device', services)
-
-        if (services[0]) {
-          //....
-        } else {
-          //....
-        }
-      })
-
-      console.log('connected to device', device)
-
-      const result = await BleClient.read(device.deviceId, HEART_RATE_SERVICE, BODY_SENSOR_LOCATION_CHARACTERISTIC)
-      console.log('body sensor location', result.getUint8(0))
-
-      const battery = await BleClient.read(device.deviceId, BATTERY_SERVICE, BATTERY_CHARACTERISTIC)
-      console.log('battery level', battery.getUint8(0))
-
-      await BleClient.write(device.deviceId, POLAR_PMD_SERVICE, POLAR_PMD_CONTROL_POINT, numbersToDataView([1, 0]))
-      console.log('written [1, 0] to control point')
-
-      await BleClient.startNotifications(
-        device.deviceId,
-        HEART_RATE_SERVICE,
-        HEART_RATE_MEASUREMENT_CHARACTERISTIC,
-        value => {
-          console.log('current heart rate', parseHeartRate(value))
-        }
-      )
-
-      // disconnect after 10 sec
-      setTimeout(() => {
-        void BleClient.stopNotifications(device.deviceId, HEART_RATE_SERVICE, HEART_RATE_MEASUREMENT_CHARACTERISTIC)
-        void BleClient.disconnect(device.deviceId)
-        console.log('disconnected from device', device)
-      }, 10000)
     } catch (error) {
       console.error(error)
     }
   }
 
-  function onDisconnect(deviceId: string): void {
+  const onDisconnect = (deviceId: string): void => {
     console.log(`device ${deviceId} disconnected`)
   }
 
-  function parseHeartRate(value: DataView): number {
+  const parseHeartRate = (value: DataView): number => {
     const flags = value.getUint8(0)
     const rate16Bits = flags & 0x1
     let heartRate: number
@@ -270,7 +204,7 @@ const Bluetooth = () => {
   if (btError) {
     return (
       <>
-        <h1>BLUETOOTH</h1>
+        <h1 className="text-3xl font-bold">BLUETOOTH</h1>
         <Ui_Alert variant="error" style={{ marginTop: 20 }}>
           {btError}
         </Ui_Alert>
@@ -280,7 +214,7 @@ const Bluetooth = () => {
 
   return (
     <>
-      <h1>BLUETOOTH</h1>
+      <h1 className="text-3xl font-bold">BLUETOOTH</h1>
       <Ui_Button onClick={() => void startDeviceListScan()} size="block">
         Start scan
       </Ui_Button>
@@ -325,28 +259,6 @@ const Bluetooth = () => {
             </Ui_Stat.Item>
           </Ui_Stat>
         ))}
-
-      <>
-        wifi connected: {`${wifi?.connected as string}`}
-        <br />
-      </>
-      <>wifi connectionType: {wifi?.connectionType}</>
-      <p>------</p>
-
-      <>wifi 2 ssid: {`${wifi2?.ssid as string}`}</>
-      <br />
-      <>wifi 2 ip: {`${wifi2?.ip as string}`}</>
-      <p>------</p>
-      <Ui_Button variant="primary" onClick={() => void Wifi.disconnect()}>
-        Disconnect
-      </Ui_Button>
-      <br />
-      <Ui_Button
-        variant="secondary"
-        onClick={() => void Wifi.connect({ ssid: wifi2?.ssid, password: 'plasticpony97mnbvcxya' })}
-      >
-        Connect
-      </Ui_Button>
     </>
   )
 }

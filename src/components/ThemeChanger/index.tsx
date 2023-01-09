@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ColorSwatchIcon } from '@heroicons/react/solid'
 import { Ui_Dropdown } from '@vermorxt/pandora_ui'
 import { useTheme } from 'next-themes'
-import { useEffect } from 'react'
+import { MouseEvent, useEffect } from 'react'
 
 export interface UseThemeProps {
   theme: string
@@ -49,6 +49,12 @@ export const ThemeChanger = () => {
     setTheme('wireframe')
   }, [])
 
+  const changeTheme = (event: any, themeSelection: string) => {
+    console.log('new theme: ', event)
+
+    setTheme(themeSelection)
+  }
+
   return (
     <>
       <Ui_Dropdown
@@ -57,20 +63,19 @@ export const ThemeChanger = () => {
         hover
         className="p-0 hover:!bg-transparent"
       >
-        <Ui_Dropdown.Label className="p-0 !bg-transparent !btn-ghost hover:!bg-transparent">
+        <Ui_Dropdown.Label tabindex="0" className="p-0 !bg-transparent !btn-ghost hover:!bg-transparent">
           <ColorSwatchIcon className="h-5 w-5" />
           <span className="hidden md:inline">Theme</span>
           <ChevronDownIcon className="h-5 w-5" />
         </Ui_Dropdown.Label>
-        <Ui_Dropdown.Content className="h-96 overflow-y-auto w-52" style={{ right: 0 }}>
-          <ul className={DEFAULT_DROPDOWN_CLASSNAMES}>
+        <Ui_Dropdown.Content className="h-96 overflow-y-auto w-52" style={{ right: 0, pointerEvents: 'auto' }}>
+          <ul tabIndex={0} className={DEFAULT_DROPDOWN_CLASSNAMES}>
             {THEMES.map((themeObj, index) => (
               <li key={index}>
                 <button
-                  type="button"
+                  onClick={event => changeTheme(event, themeObj?.name)}
                   data-set-theme={themeObj.name}
                   className={`${themeObj.name === theme ? 'active' : ''} my-0 py-0.5`}
-                  onClick={() => setTheme(themeObj.name)}
                   style={{ paddingBottom: 5, paddingTop: 5 }}
                 >
                   {themeObj.icon} {themeObj.name}
