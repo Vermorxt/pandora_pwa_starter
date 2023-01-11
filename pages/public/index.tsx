@@ -8,20 +8,31 @@ const Index: FC<any> = () => {
   return (
     <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
-        <div className="max-w-md">
-          <h1 className="text-4xl font-bold">
-            Dein Balkonkraftwerk Manager
-            <br />
-          </h1>
-          <small>powered by Dr. Grob Energy</small>
-          <p className="py-6">Hab deine Energie im Blick und kontrolliere die Hardware!</p>
+        <div className="max-w-md flex flex-col" style={{ height: 'calc(100vh - 3rem)' }}>
+          <div
+            style={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h1 className="text-4xl font-bold">
+              Dein Balkonkraftwerk Manager
+              <br />
+            </h1>
+            <small>powered by Dr. Grob Energy</small>
+            <p className="py-6">Hab deine Energie im Blick und kontrolliere die Hardware!</p>
+          </div>
+          <span style={{ flexGrow: 1 }}></span>
           <Ui_Button
             className="mb-4"
             variant="primary"
             size="full"
             onClick={() => void router.push('/public/register/')}
           >
-            Ich bin ein neuer Benutzer
+            Ich bin ein neuer Nutzer
           </Ui_Button>
           <Ui_Button variant="secondary" size="full" onClick={() => void router.push('/public/login/')}>
             Ich habe einen Account

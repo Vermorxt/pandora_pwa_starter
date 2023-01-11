@@ -73,9 +73,7 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
           overflow: 'hidden',
         }}
       >
-        <Header />
         <Container>
-          <Breadcrumbs />
           <Content>{children}</Content>
         </Container>
       </div>
