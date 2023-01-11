@@ -39,7 +39,11 @@ or
 
 for android you can use following command to test on an external device directly without opening android studio:
 
-`npx cap run ios -l --external`
+`npx cap run android -l --external`
+
+for ios:
+
+`npx capacitor run ios --livereload --external`
 
 
 ## Trobleshooting

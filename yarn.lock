@@ -959,9 +959,9 @@
     "@types/web-bluetooth" "^0.0.16"
     throat "^6.0.1"
 
-"@capacitor-community/wifi@https://github.com/digaus/community-capacitor-wifi.git#capacitor3":
+"@capacitor-community/wifi@git+https://github.com/sultanmyrza/community-capacitor-wifi.git#capacitor3":
   version "0.0.1"
-  resolved "https://github.com/digaus/community-capacitor-wifi.git#b911ae43cfe1ef28f1f183b0a078051a8fbda909"
+  resolved "git+https://github.com/sultanmyrza/community-capacitor-wifi.git#3fc1395043591824c4d319c04c0dbb9b9431492f"
   dependencies:
     node-wifi "~2.0.15"
 
@@ -999,6 +999,16 @@
   integrity sha512-7A2IV9E8umgu9u0fChUTjQJq+Jp25GJZMmWxoQN/nVx/1rcpFJ4m1xo3NPBoIRs+aV7FR+BM17mPrnkKlA8N2g==
   dependencies:
     tslib "^2.1.0"
+
+"@capacitor/device@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/device/-/device-4.1.0.tgz#b9f73368f6f6f1194181bcd7bc4b8a021c67f33e"
+  integrity sha512-BlcYb6e6m+vC1SxeyUDIUGfuNXdKEcpFPDCs/kxk2SByFc/BkvXeoy4NjY4qmTderGELofX9bta5Iy9JV7rGUg==
+
+"@capacitor/geolocation@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@capacitor/geolocation/-/geolocation-4.1.0.tgz#1941b5ca4288d7cb5c80940649d4416322b37ee2"
+  integrity sha512-hfI4MUcu1zcJPTvm0g6V3telTGwq9sCU8EnY4hFJpLedbIQeWPthCOSbFtNHAU5mVaAP1Zls3x6TsXL8TX08EA==
 
 "@capacitor/ios@^4.6.1":
   version "4.6.1"
@@ -3007,6 +3017,11 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001400, caniuse-lite@^1.0.30001406, can
   version "1.0.30001441"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001441.tgz#987437b266260b640a23cd18fbddb509d7f69f3e"
   integrity sha512-OyxRR4Vof59I3yGWXws6i908EtGbMzVUi3ganaZQHmydk1iwDhRnvaPG2WaR0KcqrDFKrxVZHULT396LEPhXfg==
+
+capacitor-native-settings@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/capacitor-native-settings/-/capacitor-native-settings-4.0.3.tgz#f786c9ec746d37800ef60a9b76788351a440a6f6"
+  integrity sha512-wxWFwdSySJ1dX8eLFogTYluLYu8fc8biMTL9x0ioI559mHiPDDoCBc//W0nhByUG7a1UxrY4vM4MGDTc/Mf7Bw==
 
 caseless@~0.12.0:
   version "0.12.0"

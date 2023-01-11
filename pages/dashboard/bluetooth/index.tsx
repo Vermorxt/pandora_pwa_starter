@@ -1,6 +1,4 @@
-import { BleClient, BleDevice, numbersToDataView, numberToUUID, ScanResult } from '@capacitor-community/bluetooth-le'
-import { Wifi } from '@capacitor-community/wifi'
-import { Network } from '@capacitor/network'
+import { BleClient, BleDevice, numberToUUID, ScanResult } from '@capacitor-community/bluetooth-le'
 import { Ui_Alert, Ui_Button, Ui_Stat } from '@vermorxt/pandora_ui'
 import { useEffect, useState } from 'react'
 import SweetAlertToast from '../../../src/components/SweetAlert/sweet-alert-toast'
@@ -24,6 +22,8 @@ const Bluetooth = () => {
       await BleClient.initialize()
 
       console.log('Bluetooth initialized')
+
+      setScanStatus('initialized')
     } catch (error: any) {
       console.error(error)
 
@@ -198,7 +198,7 @@ const Bluetooth = () => {
   }
 
   useEffect(() => {
-    void initBluetooth()
+    // void initBluetooth()
   }, [])
 
   if (btError) {
@@ -215,10 +215,17 @@ const Bluetooth = () => {
   return (
     <>
       <h1 className="text-3xl font-bold">BLUETOOTH</h1>
-      <Ui_Button onClick={() => void startDeviceListScan()} size="block">
-        Start scan
-      </Ui_Button>
-      <p>{scanStatus}</p>
+
+      {!scanStatus && (
+        <Ui_Button onClick={() => void initBluetooth()} size="block">
+          Initialisiere BT
+        </Ui_Button>
+      )}
+      {scanStatus && (
+        <Ui_Button onClick={() => void startDeviceListScan()} size="block">
+          Start scan
+        </Ui_Button>
+      )}
 
       {singleDevice && (
         <Ui_Stat style={{ width: '100%', marginBottom: 20 }}>
@@ -243,6 +250,26 @@ const Bluetooth = () => {
       )}
 
       {!singleDevice &&
+        devices.length > 0 &&
+        devices.map((device, index) => (
+          <Ui_Stat key={index} style={{ width: '100%', marginBottom: 20 }}>
+            <Ui_Stat.Item>
+              <Ui_Stat.Title className="_ellipsis">{device?.device?.deviceId}</Ui_Stat.Title>
+              <Ui_Stat.Value className="_ellipsis" style={{ fontSize: '1rem' }}>
+                {device?.device?.name || 'Kein Name'}
+              </Ui_Stat.Value>
+              <Ui_Stat.Description className="_ellipsis">Verbunden: Nein</Ui_Stat.Description>
+            </Ui_Stat.Item>
+            <Ui_Stat.Item className="flex justify-center items-center">
+              <Ui_Button size="small" variant="ghost" outline onClick={() => void connectSingleDevice(device.device)}>
+                Verbinden
+              </Ui_Button>
+            </Ui_Stat.Item>
+          </Ui_Stat>
+        ))}
+
+      {!singleDevice &&
+        devices.length > 0 &&
         devices.map((device, index) => (
           <Ui_Stat key={index} style={{ width: '100%', marginBottom: 20 }}>
             <Ui_Stat.Item>

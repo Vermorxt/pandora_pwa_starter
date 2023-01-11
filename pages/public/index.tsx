@@ -13,7 +13,7 @@ const Index: FC<any> = () => {
             Dein Balkonkraftwerk Manager
             <br />
           </h1>
-          <small>powered by Dr. Grob</small>
+          <small>powered by Dr. Grob Energy</small>
           <p className="py-6">Hab deine Energie im Blick und kontrolliere die Hardware!</p>
           <Ui_Button
             className="mb-4"
