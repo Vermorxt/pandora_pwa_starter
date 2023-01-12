@@ -1,3 +1,6 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
+/** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig} */
 module.exports = {
   content: [
     './pages/*.{js,ts,jsx,tsx}',
@@ -22,13 +25,21 @@ module.exports = {
     './src/layout/Sidebar/index.tsx',
     './src/layout/Sidebar/SidebarFooter.tsx',
   ],
-  // safelist: [{ pattern: /.*/ }],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['"Plus Jakarta Sans"', ...fontFamily.sans],
+    },
+    colors: {
+      primary: '#5c6ac4',
+      secondary: '#ecc94b',
+    },
   },
-  plugins: [require('daisyui'), require('@tailwindcss/typography')],
   daisyui: {
     themes: [
+      'dark',
+      'cupcake',
+      'mytheme',
       'light',
       'dark',
       'cupcake',
@@ -59,11 +70,5 @@ module.exports = {
       'coffee',
       'winter',
     ],
-    styled: true,
-    // themes: true,
-    // base: true,
-    utils: true,
-    // logs: true,
-    // rtl: false,
   },
 }

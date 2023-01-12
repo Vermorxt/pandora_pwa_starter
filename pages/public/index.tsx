@@ -8,7 +8,7 @@ const Index: FC<any> = () => {
   return (
     <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
-        <div className="max-w-md flex flex-col" style={{ height: 'calc(100vh - 3rem)' }}>
+        <div className="max-w-md flex flex-col" style={{ height: 'calc(100vh - 5rem)' }}>
           <div
             style={{
               height: '100%',

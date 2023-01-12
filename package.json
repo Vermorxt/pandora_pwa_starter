@@ -24,7 +24,7 @@
     "@capacitor/ios": "^4.6.1",
     "@capacitor/network": "^4.1.0",
     "@heroicons/react": "^1.0.6",
-    "@vermorxt/pandora_ui": "0.0.65",
+    "@vermorxt/pandora_ui": "0.0.67",
     "@vermorxt/pandora_utils": "^0.0.2",
     "axios": "^1.1.3",
     "capacitor-native-settings": "^4.0.3",

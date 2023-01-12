@@ -30,7 +30,9 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
     const sideBarContext = getSidebarContextBasedOnUrl(router.asPath)
 
     if (!userIsLoggedIn() && sideBarContext === '') {
-      return void router.push('/public/')
+      if (router.asPath !== '/public/') {
+        return void router.push('/public/')
+      }
     }
 
     if (!userIsLoggedIn() && sideBarContext !== 'public') {

@@ -1,5 +1,7 @@
+// NOTE: to have a working theme and pandora ui behavior, keep imports like below
 @import '~flag-icons/sass/flag-icons.scss';
 @import './tailwind-import.css';
+@import './theme.scss';
 @import './react-date-picker.scss';
-// @import './daisyui-full.css';
+@import './daisyui-full.css';
 // @import './tailwind.min.css';

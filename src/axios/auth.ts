@@ -188,7 +188,7 @@ export const logout = async () => {
     if (interval) {
       clearInterval(interval)
     }
-    await Router.push(UrlPublic.Login)
+    await Router.push(UrlPublic.Public)
   }
 
   return true

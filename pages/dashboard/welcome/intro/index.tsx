@@ -1,4 +1,4 @@
-import { Ui_Button, Ui_Hero } from '@vermorxt/pandora_ui'
+import { Ui_Button,Ui_Hero } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 
 const IntroPage = () => {
@@ -31,7 +31,7 @@ const IntroPage = () => {
           >
             Ja, wir legen ein Profil an
           </Ui_Button>
-          <Ui_Button variant="ghost" size="full" onClick={() => void router.push('/dashboard/')}>
+          <Ui_Button variant="neutral" size="full" onClick={() => void router.push('/dashboard/')}>
             Nein, ich überspinge den Schritt
           </Ui_Button>
         </div>

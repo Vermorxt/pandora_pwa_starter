@@ -9,6 +9,7 @@
     "chartdiv",
     "deletable",
     "formfield",
+    "grob",
     "hoverable",
     "linkify",
     "middlewares",

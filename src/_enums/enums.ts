@@ -120,6 +120,7 @@ export enum OrderBy {
 export enum UrlPublic {
   Root = '/',
   Other = '*/:id',
+  Public = '/public',
   Login = '/public/login',
   StartPage = '/public/startpage',
   PasswordReset = '/public/password-reset',

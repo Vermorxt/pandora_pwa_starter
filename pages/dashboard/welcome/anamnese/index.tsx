@@ -41,40 +41,44 @@ const AnamnesePage = () => {
           <div className="form-control">
             <Ui_InputGroup size="small">
               <span>Uhrzeit</span>
-              <ReactDatePicker
-                selected={formDate}
-                dateFormat={datePickerCustomOptions.dateFormat}
-                timeIntervals={datePickerCustomOptions.timeIntervals}
-                timeFormat={datePickerCustomOptions.timeFormat}
-                showTimeSelect
-                onChange={date => changeDate(date as Date)}
-                withPortal
-                showTimeSelectOnly
-                timeCaption="Zeit"
-              />
+              <div className="w-full">
+                <ReactDatePicker
+                  selected={formDate}
+                  dateFormat={datePickerCustomOptions.dateFormat}
+                  timeIntervals={datePickerCustomOptions.timeIntervals}
+                  timeFormat={datePickerCustomOptions.timeFormat}
+                  showTimeSelect
+                  onChange={date => changeDate(date as Date)}
+                  withPortal
+                  showTimeSelectOnly
+                  timeCaption="Zeit"
+                />
+              </div>
             </Ui_InputGroup>
           </div>
           <p className="mt-4">Wann verlässt du das Haus?</p>
           <div className="form-control">
             <Ui_InputGroup size="small">
               <span>Uhrzeit</span>
-              <ReactDatePicker
-                selected={formDate}
-                dateFormat={datePickerCustomOptions.dateFormat}
-                timeIntervals={datePickerCustomOptions.timeIntervals}
-                timeFormat={datePickerCustomOptions.timeFormat}
-                showTimeSelect
-                onChange={date => changeDate(date as Date)}
-                withPortal
-                showTimeSelectOnly
-                timeCaption="Zeit"
-              />
+              <div className="w-full">
+                <ReactDatePicker
+                  selected={formDate}
+                  dateFormat={datePickerCustomOptions.dateFormat}
+                  timeIntervals={datePickerCustomOptions.timeIntervals}
+                  timeFormat={datePickerCustomOptions.timeFormat}
+                  showTimeSelect
+                  onChange={date => changeDate(date as Date)}
+                  withPortal
+                  showTimeSelectOnly
+                  timeCaption="Zeit"
+                />
+              </div>
             </Ui_InputGroup>
           </div>
 
           <Ui_FlexGrow className="mb-4 mt-8">
             <Ui_FlexGrow.Static className="mr-2">
-              <Ui_Button variant="ghost" size="full" onClick={() => void router.push('/dashboard/welcome/devices')}>
+              <Ui_Button variant="neutral" size="full" onClick={() => void router.push('/dashboard/welcome/devices')}>
                 {`<`}
               </Ui_Button>
             </Ui_FlexGrow.Static>

@@ -9,7 +9,7 @@ export interface UseThemeProps {
 }
 
 export const THEMES = [
-  { name: 'mytheme', icon: '📝', mode: 'light' },
+  { name: 'grob_energy', icon: '⚡', mode: 'light' },
   { name: 'wireframe', icon: '📝', mode: 'light', active: true },
   { name: 'light', icon: '🌝', mode: 'light' },
   { name: 'dark', icon: '🌚', mode: 'dark' },
@@ -47,7 +47,7 @@ export const ThemeChanger = () => {
   const { theme, setTheme } = useTheme() as UseThemeProps
 
   useEffect(() => {
-    setTheme('dark')
+    setTheme('grob_energy')
   }, [])
 
   const changeTheme = (event: any, themeSelection: string) => {

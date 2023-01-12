@@ -9,22 +9,22 @@ import { GlobalContextProvider } from '../src/system'
 // NOTE: keep import order to prevent style overrides
 import '../styles/globals.scss'
 // NOTE: keep import order to prevent style overrides
-import './../styles/imports.scss'
-// NOTE: keep import order to prevent style overrides
 import '/node_modules/@vermorxt/pandora_ui/dist/esm/index.css'
+// NOTE: keep import order to prevent style overrides
+import './../styles/imports.scss'
 
 const WebApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  console.log('ENVIRONMENT: ', process.env.NEXT_PUBLIC_ENVIRONMENT)
+  console.log('ENVIRONMENT : ', process.env.NEXT_PUBLIC_ENVIRONMENT)
 
   useEffect(() => {
     if (!isLoading) return
 
     setTimeout(() => {
       setIsLoading(false)
-    }, 1000)
+    }, 1010)
   }, [])
 
   const HtmlHeader = () => (

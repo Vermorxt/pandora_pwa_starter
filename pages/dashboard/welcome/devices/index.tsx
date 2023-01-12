@@ -1,7 +1,7 @@
-import { Ui_Button, Ui_FlexGrow, Ui_Hero } from '@vermorxt/pandora_ui'
+import { Ui_Button,Ui_FlexGrow,Ui_Hero } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { formIsValid, useSubmit } from '../../../../src/modules/form'
+import { formIsValid,useSubmit } from '../../../../src/modules/form'
 import { Ui_Form } from '../../../../src/modules/form/hooks/form-context'
 import { InitialFormValues } from '../../../../src/modules/form/_types/form/initial-form-values'
 
@@ -135,12 +135,12 @@ const DevicesPage = () => {
 
           <Ui_FlexGrow>
             <Ui_FlexGrow.Static className="mr-2">
-              <Ui_Button variant="ghost" size="full" onClick={() => void router.push('/dashboard/welcome/intro')}>
+              <Ui_Button variant="neutral" size="full" onClick={() => void router.push('/dashboard/welcome/intro')}>
                 {`<`}
               </Ui_Button>
             </Ui_FlexGrow.Static>
             <Ui_FlexGrow.Full>
-              <Ui_Button variant="ghost" size="full" onClick={() => void router.push('/dashboard/')}>
+              <Ui_Button variant="neutral" size="full" onClick={() => void router.push('/dashboard/')}>
                 Schritt überspringen
               </Ui_Button>
             </Ui_FlexGrow.Full>
