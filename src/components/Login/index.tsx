@@ -1,4 +1,4 @@
-import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button, Ui_Card, Ui_Divider, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
@@ -14,6 +14,8 @@ import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
 import { useGlobalContext } from '../../system'
+import LogoPublic from '../LogoPublic'
+import scss from './login.module.scss'
 
 const Login = () => {
   const router = useRouter()
@@ -102,55 +104,61 @@ const Login = () => {
   })
 
   return (
-    <>
-      <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="login-card" bgBase="200" className="w-96">
-          <Ui_Card.Body>
-            <Ui_Card.Title>
-              <div className="flex w-full">
-                <div style={{ flexGrow: 1 }}>Login</div>
-                <Ui_Button size="small" variant="ghost" onClick={() => void router.push('/public/register')}>
-                  Neu anmelden
-                </Ui_Button>
-              </div>
-            </Ui_Card.Title>
-            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
-              <Ui_Button
-                loading={loading}
-                size="block"
-                className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
-                type="submit"
-                name="submit"
-                style={{ marginTop: 20, marginBottom: 10 }}
-              >
-                Login
-              </Ui_Button>
-            </Ui_Form>
+    <div className={scss.wrapper}>
+      <div className={scss.header}>
+        <LogoPublic cleanLogo={true} style={{ width: 70 }} />
+        <h2>Willkommen zurück!</h2>
+        <p className="_font-small">Bitte logge dich ein, um Zugriff zum Dashboard zu haben.</p>
+      </div>
+      <div>
+        <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
+          <Ui_Button
+            loading={loading}
+            size="block"
+            className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
+            type="submit"
+            name="submit"
+            style={{ marginTop: 20, marginBottom: 10 }}
+          >
+            Login
+          </Ui_Button>
+        </Ui_Form>
 
-            {showError && (
-              <Ui_Alert variant="error">
-                <span>Oh, something went wrong.</span>
-              </Ui_Alert>
-            )}
+        {showError && (
+          <Ui_Alert variant="error" style={{ marginTop: 8 }}>
+            <span>Oh, something went wrong.</span>
+          </Ui_Alert>
+        )}
 
-            {loginFailed && (
-              <Ui_Alert variant="error">
-                <span>Oops, email or password does not match.</span>
-              </Ui_Alert>
-            )}
+        {loginFailed && (
+          <Ui_Alert variant="error" style={{ marginTop: 8 }}>
+            <span>Oops, email or password does not match.</span>
+          </Ui_Alert>
+        )}
 
-            <Ui_Card.Actions>
-              <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>Passwort vergessen? </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/forgot-password')}>
-                  reset
-                </Ui_Button>
-              </p>
-            </Ui_Card.Actions>
-          </Ui_Card.Body>
-        </Ui_Card>
-      </Ui_Flex>
-    </>
+        <Ui_Divider style={{ width: '60%', margin: '20px auto' }}>
+          <small>oder</small>
+        </Ui_Divider>
+
+        <div className="flex w-full">
+          <Ui_Button size="full" type="button" variant="neutral" onClick={() => void router.push('/public/register')}>
+            Neu anmelden
+          </Ui_Button>
+        </div>
+
+        <p style={{ textAlign: 'center', marginTop: 15 }}>
+          <small>Passwort vergessen? </small>
+          <Ui_Button
+            type="button"
+            variant="ghost"
+            size="mini"
+            onClick={() => void router.push('/public/forgot-password')}
+          >
+            Zurücksetzen
+          </Ui_Button>
+        </p>
+      </div>
+    </div>
   )
 }
 

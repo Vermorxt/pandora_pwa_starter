@@ -6,3 +6,4 @@
 .drawer-toggle:checked ~ .drawer-side {
   isolation: auto !important;
 }
+

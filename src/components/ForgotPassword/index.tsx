@@ -1,11 +1,8 @@
-import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
-import axios, { AxiosError } from 'axios'
-import { useTranslation } from 'next-i18next'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { login, logout } from '../../../src/axios/auth'
-import { ApiAuthDefinition } from '../../../src/_enums/api-auth-definition'
 import { HttpStatus } from '../../../src/_enums/http-status'
 import { AnyType } from '../../../src/_types/anytype'
 import { AxiosErrorInterface } from '../../../src/_types/api-endpoints'
@@ -13,7 +10,9 @@ import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
-import { GlobalContext, useGlobalContext } from '../../system'
+import { useGlobalContext } from '../../system'
+import LogoPublic from '../LogoPublic'
+import scss from './forgot-password.module.scss'
 
 export interface UserLoginResponse {
   data?: any
@@ -103,55 +102,54 @@ const ForgotPassword = () => {
   })
 
   return (
-    <>
-      <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="forgot-password-card" bgBase="200" className="w-96">
-          <Ui_Card.Body>
-            <Ui_Card.Title>Reset Passwort</Ui_Card.Title>
+    <div className={scss.wrapper}>
+      <div className={scss.header}>
+        <LogoPublic cleanLogo={true} style={{ width: 70 }} />
+        <h2>Passwort zurücksetzen</h2>
+        <p className="_font-small">
+          Bitte trage deine E-Mail Adresse ein. Wir senden Dir eine E-Mail mit weiteren Instruktionen wie du dein
+          Passwort zurücksetzen kannst.
+        </p>
+      </div>
+      <div>
+        <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
+          <Ui_Button
+            loading={loading}
+            size="block"
+            className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
+            type="submit"
+            name="submit"
+            style={{ marginTop: 20, marginBottom: 10 }}
+          >
+            Absenden
+          </Ui_Button>
+        </Ui_Form>
 
-            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
-              <Ui_Button
-                loading={loading}
-                size="block"
-                className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
-                type="submit"
-                name="submit"
-                style={{ marginTop: 20, marginBottom: 10 }}
-              >
-                Absenden
-              </Ui_Button>
-            </Ui_Form>
+        {showError && (
+          <Ui_Alert variant="error">
+            <span>Oh, something went wrong.</span>
+          </Ui_Alert>
+        )}
 
-            {showError && (
-              <Ui_Alert variant="error">
-                <span>Oh, something went wrong.</span>
-              </Ui_Alert>
-            )}
+        {registerFailed && (
+          <Ui_Alert variant="error">
+            <span>Oops, registration failed.</span>
+          </Ui_Alert>
+        )}
 
-            {registerFailed && (
-              <Ui_Alert variant="error">
-                <span>Oops, registration failed.</span>
-              </Ui_Alert>
-            )}
-
-            {registerFinished && (
-              <Ui_Alert variant="success">
-                <span>{registerFinished}</span>
-              </Ui_Alert>
-            )}
-
-            <Ui_Card.Actions>
-              <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>Login vorhanden? </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
-                  login
-                </Ui_Button>
-              </p>
-            </Ui_Card.Actions>
-          </Ui_Card.Body>
-        </Ui_Card>
-      </Ui_Flex>
-    </>
+        {registerFinished && (
+          <Ui_Alert variant="success">
+            <span>{registerFinished}</span>
+          </Ui_Alert>
+        )}
+      </div>
+      <p style={{ textAlign: 'center', marginTop: 15 }}>
+        <small>Login vorhanden? </small>
+        <Ui_Button type="button" variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
+          Login
+        </Ui_Button>
+      </p>
+    </div>
   )
 }
 

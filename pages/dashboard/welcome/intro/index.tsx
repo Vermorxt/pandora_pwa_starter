@@ -1,11 +1,11 @@
-import { Ui_Button,Ui_Hero } from '@vermorxt/pandora_ui'
+import { Ui_Button, Ui_Hero } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 
 const IntroPage = () => {
   const router = useRouter()
 
   return (
-    <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
+    <Ui_Hero style={{ minHeight: 'calc(100vh - 170px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
         <div className="max-w-md">
           <h1 className="text-4xl font-bold">

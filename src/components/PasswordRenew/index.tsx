@@ -1,10 +1,9 @@
-import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button, Ui_Card } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
 import axios, { AxiosError } from 'axios'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import { login, logout } from '../../../src/axios/auth'
+import { login } from '../../../src/axios/auth'
 import { ApiAuthDefinition } from '../../../src/_enums/api-auth-definition'
 import { HttpStatus } from '../../../src/_enums/http-status'
 import { AnyType } from '../../../src/_types/anytype'
@@ -13,7 +12,9 @@ import { formIsValid, useSubmit } from '../../modules/form'
 import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
-import { GlobalContext, useGlobalContext } from '../../system'
+import { useGlobalContext } from '../../system'
+import LogoPublic from '../LogoPublic'
+import scss from './password-renew.module.scss'
 
 export interface ProductRole {
   product: string
@@ -124,45 +125,43 @@ const PasswordRenew = () => {
   })
 
   return (
-    <>
-      <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="password-renew-card" bgBase="200" className="w-96">
-          <Ui_Card.Body>
-            <Ui_Card.Title>Passwort erneuern</Ui_Card.Title>
-            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="password-renew">
-              <Ui_Button
-                loading={loading}
-                size="block"
-                className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
-                type="submit"
-                name="submit"
-                style={{ marginTop: 20, marginBottom: 10 }}
-              >
-                Speichern
-              </Ui_Button>
-            </Ui_Form>
-            {showError && (
-              <Ui_Alert variant="error">
-                <span>Oh, something went wrong.</span>
-              </Ui_Alert>
-            )}
-            {loginFailed && (
-              <Ui_Alert variant="error">
-                <span>Oops, email or password does not match.</span>
-              </Ui_Alert>
-            )}
-            <Ui_Card.Actions>
-              <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>Login vorhanden? </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
-                  login
-                </Ui_Button>
-              </p>
-            </Ui_Card.Actions>
-          </Ui_Card.Body>
-        </Ui_Card>
-      </Ui_Flex>
-    </>
+    <div className={scss.wrapper}>
+      <div className={scss.header}>
+        <LogoPublic cleanLogo={true} style={{ width: 70 }} />
+        <h2>Passwort erneuern</h2>
+        <p className="_font-small">Bitte gib dein neues Passwort ein! </p>
+      </div>
+      <div>
+        <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="password-renew">
+          <Ui_Button
+            loading={loading}
+            size="block"
+            className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
+            type="submit"
+            name="submit"
+            style={{ marginTop: 20, marginBottom: 10 }}
+          >
+            Speichern
+          </Ui_Button>
+        </Ui_Form>
+        {showError && (
+          <Ui_Alert variant="error">
+            <span>Oh, something went wrong.</span>
+          </Ui_Alert>
+        )}
+        {loginFailed && (
+          <Ui_Alert variant="error">
+            <span>Oops, email or password does not match.</span>
+          </Ui_Alert>
+        )}
+      </div>{' '}
+      <p style={{ textAlign: 'center', marginTop: 15 }}>
+        <small>Login vorhanden? </small>
+        <Ui_Button type="button" variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
+          Login
+        </Ui_Button>
+      </p>
+    </div>
   )
 }
 

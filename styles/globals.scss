@@ -15,6 +15,17 @@ a {
   h1 {
     font-size: 2rem;
   }
+  h2 {
+    font-size: 1.8rem;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
 }
 
 *,
@@ -33,6 +44,11 @@ input:autofill {
   overflow: hidden;
   display: inline-block;
   max-width: 130px;
+}
+
+._font-small {
+  font-size: 15px;
+  font-weight: 300;
 }
 
 input {

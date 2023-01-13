@@ -1,7 +1,8 @@
 .error {
   color: #f87272;
-  margin: 3px 0 10px;
+  margin: 3px 0 0;
   font-size: 12px;
+  text-align: left;
 
   &:before {
     display: inline;

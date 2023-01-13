@@ -25,7 +25,7 @@ export const Container: FC<any> = ({ children }) => {
   }, [router])
   return (
     <div
-      className={`main-container ${scss.container} bg-base-100`}
+      className={`main-container ${scss.container}`}
       style={{ marginBottom: `${publicStyle === true ? '100px' : '10px'}` }}
     >
       {children}

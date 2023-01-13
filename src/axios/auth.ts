@@ -104,7 +104,10 @@ export const logoutInactivityTimer = () => {
     if (dayjs(now).diff(inactivityStartTime) > MAX_LOGIN_TIME_MINUTES * 60 * 1000) {
       clearInterval(interval)
 
-      console.error('force user logout ... auth.tsx -> logoutInactivityTimer()')
+      console.log(
+        '%c force user logout ... auth.tsx -> logoutInactivityTimer() ',
+        'background: #ff0000; color: #bada55'
+      )
 
       removeSecureHeader()
       void logout()
@@ -180,6 +183,8 @@ export const getCurrentProductRole = (cmsUser: any, selectedProject: Product) =>
 
 export const logout = async () => {
   storedAccessToken = null as unknown as string
+
+  console.log('%c User logged out! ', 'background: #222; color: #bada55')
 
   if (typeof window !== 'undefined') {
     window.localStorage.removeItem('jwt')

@@ -1,7 +1,7 @@
-import { Ui_Button,Ui_FlexGrow,Ui_Hero } from '@vermorxt/pandora_ui'
+import { Ui_Button, Ui_FlexGrow, Ui_Hero } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { formIsValid,useSubmit } from '../../../../src/modules/form'
+import { formIsValid, useSubmit } from '../../../../src/modules/form'
 import { Ui_Form } from '../../../../src/modules/form/hooks/form-context'
 import { InitialFormValues } from '../../../../src/modules/form/_types/form/initial-form-values'
 
@@ -90,7 +90,7 @@ const DevicesPage = () => {
   }
 
   return (
-    <Ui_Hero style={{ minHeight: 'calc(100vh - 140px)' }} bgColor="base-100">
+    <Ui_Hero style={{ minHeight: 'calc(100vh - 170px)' }} bgColor="base-100">
       <Ui_Hero.Content className="text-center">
         <div className="max-w-md">
           <h1 className="text-4xl font-bold">

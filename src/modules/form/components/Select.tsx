@@ -1,8 +1,8 @@
-import { ValidationOptions } from '../_types/form/validation-options'
 import React, { FC, InputHTMLAttributes, useEffect, useState } from 'react'
 import Text from '../text'
 import { formErrors } from '../util/form-is-valid'
 import { getFieldError } from '../util/validation'
+import { ValidationOptions } from '../_types/form/validation-options'
 
 export interface Ui_FormPropsSelect extends InputHTMLAttributes<HTMLTextAreaElement> {
   defaultValue?: string

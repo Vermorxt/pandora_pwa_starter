@@ -150,7 +150,7 @@ const WifiPage = () => {
         <table style={{ width: '100%', marginBottom: 20, textAlign: 'left' }}>
           <thead>
             <tr>
-              <th style={{ width: 200 }}>Key</th>
+              <th style={{ width: 150 }}>Key</th>
               <th>Value</th>
             </tr>
           </thead>
@@ -167,10 +167,10 @@ const WifiPage = () => {
       )}
 
       <h4 className="text-2xl mb-2">Network</h4>
-      <table style={{ maxWidth: 400, width: '100%' }}>
+      <table style={{ maxWidth: 400, width: '100%', textAlign: 'left' }}>
         <thead>
           <tr>
-            <th>Typ</th>
+            <th style={{ width: 150 }}>Key</th>
             <th>Wert</th>
           </tr>
         </thead>

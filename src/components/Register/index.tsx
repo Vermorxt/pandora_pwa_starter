@@ -1,7 +1,6 @@
 import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
 import { AxiosError } from 'axios'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { HttpStatus } from '../../../src/_enums/http-status'
@@ -12,6 +11,8 @@ import { Ui_Form } from '../../modules/form/hooks/form-context'
 import { formErrors } from '../../modules/form/util/form-is-valid'
 import { InitialFormValues } from '../../modules/form/_types/form/initial-form-values'
 import { useGlobalContext } from '../../system'
+import LogoPublic from '../LogoPublic'
+import scss from './register.module.scss'
 
 export interface UserLoginResponse {
   data?: any
@@ -105,55 +106,51 @@ const Register = () => {
   })
 
   return (
-    <>
-      <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="register-card" bgBase="200" className="w-96">
-          <Ui_Card.Body>
-            <Ui_Card.Title>{'Registrierung'}</Ui_Card.Title>
+    <div className={scss.wrapper}>
+      <div className={scss.header}>
+        <LogoPublic cleanLogo={true} style={{ width: 70 }} />
+        <h2>Willkommen bei deinem Balkonkraftwerk!</h2>
+        <p className="_font-small">Bitte registriere dich, um Zugriff zum Dashboard zu erhalten.</p>
+      </div>
+      <div>
+        <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
+          <Ui_Button
+            loading={loading}
+            size="block"
+            className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
+            type="submit"
+            name="submit"
+            style={{ marginTop: 20, marginBottom: 10 }}
+          >
+            Registrieren
+          </Ui_Button>
+        </Ui_Form>
 
-            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
-              <Ui_Button
-                loading={loading}
-                size="block"
-                className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
-                type="submit"
-                name="submit"
-                style={{ marginTop: 20, marginBottom: 10 }}
-              >
-                Registrieren
-              </Ui_Button>
-            </Ui_Form>
+        {showError && (
+          <Ui_Alert variant="error">
+            <span>Oh, something went wrong.</span>
+          </Ui_Alert>
+        )}
 
-            {showError && (
-              <Ui_Alert variant="error">
-                <span>Oh, something went wrong.</span>
-              </Ui_Alert>
-            )}
+        {registerFailed && (
+          <Ui_Alert variant="error">
+            <span>Oops, registration failed.</span>
+          </Ui_Alert>
+        )}
 
-            {registerFailed && (
-              <Ui_Alert variant="error">
-                <span>Oops, registration failed.</span>
-              </Ui_Alert>
-            )}
-
-            {registerFinished && (
-              <Ui_Alert variant="success">
-                <span>{registerFinished}</span>
-              </Ui_Alert>
-            )}
-
-            <Ui_Card.Actions>
-              <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>{'Login vorhanden?'} </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
-                  login
-                </Ui_Button>
-              </p>
-            </Ui_Card.Actions>
-          </Ui_Card.Body>
-        </Ui_Card>
-      </Ui_Flex>
-    </>
+        {registerFinished && (
+          <Ui_Alert variant="success">
+            <span>{registerFinished}</span>
+          </Ui_Alert>
+        )}
+      </div>
+      <p style={{ textAlign: 'center', marginTop: 15 }}>
+        <small>Login vorhanden? </small>
+        <Ui_Button type="button" variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
+          Login
+        </Ui_Button>
+      </p>
+    </div>
   )
 }
 

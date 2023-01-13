@@ -1,4 +1,4 @@
-import { Ui_Alert, Ui_Button, Ui_Card, Ui_Flex, Ui_FlexGrow } from '@vermorxt/pandora_ui'
+import { Ui_Alert, Ui_Button } from '@vermorxt/pandora_ui'
 import { Helper } from '@vermorxt/pandora_utils'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
@@ -13,6 +13,8 @@ import { ApiAuthDefinition } from '../../_enums/api-auth-definition'
 import { HttpStatus } from '../../_enums/http-status'
 import { AnyType } from '../../_types/anytype'
 import { AxiosErrorInterface } from '../../_types/api-endpoints'
+import LogoPublic from '../LogoPublic'
+import scss from './set-password.module.scss'
 
 export interface ProductRole {
   product: string
@@ -134,51 +136,48 @@ const SetPasswordAfterRegistration = () => {
   })
 
   return (
-    <>
-      <Ui_Flex className="items-center justify-center p-6" style={{ minHeight: '70vh' }}>
-        <Ui_Card id="set-password-card" bgBase="200" className="w-96">
-          <Ui_Card.Body>
-            <Ui_Card.Title>Passwort festlegen</Ui_Card.Title>
-            <p>Bitte lege dein Passwort fest!</p>
-            <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
-              <Ui_Button
-                loading={loading}
-                size="block"
-                className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
-                type="submit"
-                name="submit"
-                style={{ marginTop: 20, marginBottom: 10 }}
-              >
-                Speichern
-              </Ui_Button>
-            </Ui_Form>
-            {succeedSetPassword && (
-              <Ui_Alert variant="success">
-                <span>Super, das hat geklappt. Bitte logge dich ein!</span>
-              </Ui_Alert>
-            )}
-            {showError && (
-              <Ui_Alert variant="error">
-                <span>Oh, something went wrong.</span>
-              </Ui_Alert>
-            )}
-            {loginFailed && (
-              <Ui_Alert variant="error">
-                <span>Oops, email or password does not match.</span>
-              </Ui_Alert>
-            )}
-            <Ui_Card.Actions>
-              <p style={{ textAlign: 'center', marginTop: 15 }}>
-                <small>Login vorhanden? </small>
-                <Ui_Button variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
-                  login
-                </Ui_Button>
-              </p>
-            </Ui_Card.Actions>
-          </Ui_Card.Body>
-        </Ui_Card>
-      </Ui_Flex>
-    </>
+    <div className={scss.wrapper}>
+      <div className={scss.header}>
+        <LogoPublic cleanLogo={true} style={{ width: 70 }} />
+        <h2>Passwort festlegen</h2>
+        <p className="_font-small">Bitte lege hier dein Passwort fest.</p>
+      </div>
+      <div>
+        <Ui_Form handleSubmit={handleSubmit} formInitialValues={formInitialValues} id="login">
+          <Ui_Button
+            loading={loading}
+            size="block"
+            className={`${finishedUpdate === true ? 'btn-success' : 'btn-primary'}`}
+            type="submit"
+            name="submit"
+            style={{ marginTop: 20, marginBottom: 10 }}
+          >
+            Speichern
+          </Ui_Button>
+        </Ui_Form>
+        {succeedSetPassword && (
+          <Ui_Alert variant="success">
+            <span>Super, das hat geklappt. Bitte logge dich ein!</span>
+          </Ui_Alert>
+        )}
+        {showError && (
+          <Ui_Alert variant="error">
+            <span>Oh, something went wrong.</span>
+          </Ui_Alert>
+        )}
+        {loginFailed && (
+          <Ui_Alert variant="error">
+            <span>Oops, email or password does not match.</span>
+          </Ui_Alert>
+        )}
+      </div>
+      <p style={{ textAlign: 'center', marginTop: 15 }}>
+        <small>Login vorhanden? </small>
+        <Ui_Button type="button" variant="ghost" size="mini" onClick={() => void router.push('/public/login')}>
+          Login
+        </Ui_Button>
+      </p>
+    </div>
   )
 }
 

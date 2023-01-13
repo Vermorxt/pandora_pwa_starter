@@ -9,7 +9,7 @@ const LogoPublic = (props: LogoPublicProps) => {
   let logo = '/media/images/svg/logo-flash-text-colored.svg'
 
   if (props?.cleanLogo === true) {
-    logo = '/media/images/svg/logo-flash-text-colored.svg'
+    logo = '/media/images/svg/logo-flash-colored.svg'
   }
 
   return <img src={logo} alt=" " style={props?.style} />

@@ -1,4 +1,4 @@
-import { Ui_Drawer, Ui_Select, Ui_Spinner } from '@vermorxt/pandora_ui'
+import { Ui_Drawer, Ui_Spinner } from '@vermorxt/pandora_ui'
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { userIsLoggedIn } from '../../axios/auth'
@@ -10,6 +10,7 @@ import { Content } from '../Content'
 import FooterMenu from '../FooterMenu'
 import Header from '../Header'
 import Sidebar from '../Sidebar'
+import scss from './layout-provider.module.scss'
 
 export type T_SideBarContext = 'dashboard' | 'public' | ''
 
@@ -64,17 +65,8 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
 
   if (layout === 'public') {
     return (
-      <div
-        style={{
-          width: '100%',
-          padding: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          height: 'auto',
-          overflow: 'hidden',
-        }}
-      >
+      <div className={`${scss.drawer} custom`}>
+        {/* <div className={scss.overlay}></div> */}
         <Container>
           <Content>{children}</Content>
         </Container>
@@ -92,17 +84,8 @@ export const LayoutProvider: FC<any> = ({ children, ...rest }) => {
         <Sidebar />
       </Ui_Drawer.Side>
       <Ui_Drawer.Content id={DRAWER_ID_SIDEBAR} isNavbar className="max-w-none">
-        <div
-          style={{
-            width: '100%',
-            padding: 0,
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-            height: 'auto',
-            overflow: 'hidden',
-          }}
-        >
+        <div className={scss.drawer}>
+          {/* <div className={scss.overlay}></div> */}
           <Header />
           <Container>
             <Breadcrumbs />
