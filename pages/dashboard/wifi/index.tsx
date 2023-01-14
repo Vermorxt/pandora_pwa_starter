@@ -128,7 +128,7 @@ const WifiPage = () => {
         <table style={{ width: '100%', marginBottom: 20, textAlign: 'left' }}>
           <thead>
             <tr>
-              <th style={{ width: 200 }}>Key</th>
+              <th style={{ width: 150 }}>Key</th>
               <th>Permission state</th>
             </tr>
           </thead>
