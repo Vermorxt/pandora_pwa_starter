@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/_enums/routes-maints"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/_enums/routes-maints", "types.d.ts"],
   "exclude": ["node_modules"]
 }
