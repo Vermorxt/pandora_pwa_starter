@@ -21,7 +21,7 @@ const eventValues: EventValues = {
   index: 0,
 }
 
-const DIAMETER = 350
+const DIAMETER = 250
 const ITEMS_COUNT = 31
 const ITEM_HEIGHT = 40
 
@@ -383,7 +383,6 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
 
   return (
     <>
-      <p className="_no-select">Val: {value}</p>
       <div className={scss.wheel} id={`wheel_${index}`}>
         <div
           id={`wheel_inner_${index}`}
@@ -402,7 +401,11 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
             </div>
           ))}
         </div>
+        <div className={scss.overlay}></div>
       </div>
+      <p className="_no-select" style={{ textAlign: 'center', marginTop: 20 }}>
+        Val: {value}
+      </p>
     </>
   )
 }
