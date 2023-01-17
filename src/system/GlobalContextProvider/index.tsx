@@ -1,5 +1,6 @@
+import { Device, DeviceInfo } from '@capacitor/device'
 import dayjs from 'dayjs'
-import React, { createContext, FC, useContext, useState } from 'react'
+import React, { createContext, FC, useContext, useEffect, useState } from 'react'
 
 export const GLOBAL_WRAPPER_ID = 'global_wrapper'
 export interface UserContextProps {
@@ -39,6 +40,17 @@ export const GlobalContext = createContext<GlobalContextValues>({
 export const GlobalContextProvider: FC<any> = ({ children }) => {
   const [userData, setUserData] = useState<UserContextProps>(defaultUserData)
   const [appData, setAppData] = useState<ApplicationContextProps>(defaultAppData)
+  const [device, setDevice] = useState<DeviceInfo>()
+
+  const logDeviceInfo = async () => {
+    const info = await Device.getInfo()
+
+    setDevice(info)
+  }
+
+  useEffect(() => {
+    void logDeviceInfo()
+  }, [])
 
   const contextValues: GlobalContextValues = {
     userData: [userData, setUserData],
@@ -47,7 +59,9 @@ export const GlobalContextProvider: FC<any> = ({ children }) => {
 
   return (
     <GlobalContext.Provider value={contextValues}>
-      <div id={GLOBAL_WRAPPER_ID}>{children}</div>
+      <div id={GLOBAL_WRAPPER_ID} className={`${device?.operatingSystem || 'unknown'}`}>
+        {children}
+      </div>
     </GlobalContext.Provider>
   )
 }

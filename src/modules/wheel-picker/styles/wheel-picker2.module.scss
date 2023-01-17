@@ -1,0 +1,63 @@
+$animation-duration: 6s;
+$animation-reverse: false;
+
+.wheel {
+  perspective: 1000px;
+  border: 1px solid #333;
+  margin: 50px;
+  overflow: hidden;
+}
+.wheel__inner {
+  position: relative;
+  width: 200px;
+  height: 350px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  // transition: transform 1000ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+
+  @if $animation-reverse {
+    animation-direction: reverse;
+  }
+}
+
+.wheel__segment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  background-color: #ccc;
+  pointer-events: none;
+  touch-action: none;
+
+  &:nth-child(even) {
+    background-color: #ddd;
+  }
+}
+
+.selector {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  z-index: 1;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  max-width: 95%;
+  left: 0;
+  right: 0;
+  margin: -25px auto;
+  pointer-events: none;
+  touch-action: none;
+}
+
+.ios,
+.android {
+  .wheel__segment,
+  .selector {
+    // pointer-events: none !important;
+  }
+}

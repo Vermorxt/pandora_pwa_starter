@@ -11,4 +11,6 @@
   overflow-y: auto;
   background-color: rgba(0, 0, 0, 0);
   // margin-bottom: 100px; // NOTE: used inline js
+  // -webkit-overflow-scrolling: auto !important;
+  overscroll-behavior: none;
 }
