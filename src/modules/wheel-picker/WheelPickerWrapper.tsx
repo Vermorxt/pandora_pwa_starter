@@ -1,3 +1,4 @@
+import { Ui_Button, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import React, { Dispatch, FC, SetStateAction } from 'react'
 import { setTimeout } from 'timers'
 import scss from './styles/wheel-wrapper.module.scss'
@@ -15,7 +16,7 @@ export interface WheelPickerWrapperProps {
 }
 
 const WheelPickerWrapper: FC<WheelPickerWrapperProps> = (props: WheelPickerWrapperProps) => {
-  const { pickerOptions } = props
+  const { pickerOptions, setPickerOptions } = props
   const { open, data } = pickerOptions
 
   return (
@@ -25,11 +26,27 @@ const WheelPickerWrapper: FC<WheelPickerWrapperProps> = (props: WheelPickerWrapp
 
         <div className={scss.wheel_container}>
           {data?.map((d, i) => (
-            <div key={i} style={{ width: `${100 / data?.length}%` }}>
+            <div key={i} style={{ width: `${100 / data?.length}%`, maxWidth: 160 }}>
               <WheelPicker4 key={i} data={d} index={i} open={open} />
             </div>
           ))}
         </div>
+        <Ui_FlexGrow style={{ marginTop: 30, textAlign: 'center', display: 'flex', width: '100%' }}>
+          <Ui_FlexGrow.Full>
+            <Ui_Button size="small" onClick={() => setPickerOptions({ ...pickerOptions, open: false })}>
+              Abruch
+            </Ui_Button>
+          </Ui_FlexGrow.Full>
+          <Ui_FlexGrow.Full>
+            <Ui_Button
+              size="small"
+              variant="primary"
+              onClick={() => setPickerOptions({ ...pickerOptions, open: false })}
+            >
+              Speichern
+            </Ui_Button>
+          </Ui_FlexGrow.Full>
+        </Ui_FlexGrow>
       </div>
     </>
   )

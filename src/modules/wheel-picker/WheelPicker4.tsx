@@ -1,3 +1,4 @@
+import { Ui_Button, Ui_FlexGrow } from '@vermorxt/pandora_ui'
 import React, { CSSProperties, FC, memo, useEffect, useReducer, useRef, useState } from 'react'
 import scss from './styles/wheel-picker4.module.scss'
 import { PickerOptions } from './WheelPickerWrapper'
@@ -6,6 +7,7 @@ interface EventValues {
   action: boolean
   diffY: number
   endY: number
+  lastY: number
   tempAngle: number
   startY: number
   startTime: Date
@@ -13,10 +15,11 @@ interface EventValues {
 }
 const eventValues: EventValues = {
   action: false,
-  diffY: 1,
-  endY: 1,
-  tempAngle: 1,
-  startY: 1,
+  diffY: 0,
+  endY: 0,
+  lastY: 0,
+  tempAngle: 0,
+  startY: 0,
   startTime: new Date(),
   index: 0,
 }
@@ -154,7 +157,7 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
     const degPerValue = 360 / ITEMS_COUNT
     const mod = Math.abs((Number(angle) / 360) >> 0)
     const reducedAngle = Math.abs(angle) - 360 * mod
-    itemIndex = reducedAngle / degPerValue
+    itemIndex = reducedAngle / degPerValue + 0.5
 
     if (angle <= 0) {
       itemIndex = Math.abs(itemIndex - ITEMS_COUNT)
@@ -206,9 +209,18 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
 
       const { itemValue, snapAngle } = getValue(rotateMore)
 
-      setValue(itemValue?.toString())
-      setRotationStateRef(snapAngle)
-      scrollToPosition(snapAngle)
+      if (Math.abs(speed) > 1) {
+        scrollToPosition(snapAngle)
+        setValue(itemValue?.toString())
+        setRotationStateRef(snapAngle)
+      } else {
+        const { itemValue, snapAngle } = getValue(rotationStateRef.current)
+
+        console.log('final: ', snapAngle, rotationStateRef.current)
+        scrollToPosition(snapAngle)
+        setValue(itemValue?.toString())
+        setRotationStateRef(snapAngle)
+      }
     }
   }
 
@@ -250,11 +262,13 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
 
           console.log('angleMod: ', angleMod)
 
-          const cellItem = refWheeler?.current.querySelectorAll(`.cell-item-${finalInt}`)
+          if (refWheeler.current) {
+            const cellItem = refWheeler?.current.querySelectorAll(`.cell-item-${finalInt}`)
 
-          if (cellItem[0]) {
-            const angleValueFinal = cellItem[0].textContent
-            setValue(angleValueFinal?.toString())
+            if (cellItem[0]) {
+              const angleValueFinal = cellItem[0].textContent
+              setValue(angleValueFinal?.toString())
+            }
           }
         }
 
@@ -272,11 +286,13 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
 
           console.log(snapAngle, ' <------> angleMod: ', angleMod)
 
-          const cellItem = refWheeler?.current.querySelectorAll(`.cell-item-${finalInt}`)
+          if (refWheeler.current) {
+            const cellItem = refWheeler?.current.querySelectorAll(`.cell-item-${finalInt}`)
 
-          if (cellItem[0]) {
-            const angleValueFinal = cellItem[0].textContent
-            setValue(angleValueFinal?.toString())
+            if (cellItem[0]) {
+              const angleValueFinal = cellItem[0].textContent
+              setValue(angleValueFinal?.toString())
+            }
           }
         }
       }
@@ -306,6 +322,7 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
 
     eventValues.action = true
     eventValues.startY = getCoord(event, 'Y')
+    eventValues.lastY = getCoord(event, 'Y')
     eventValues.diffY = 0
     eventValues.startTime = new Date()
     eventValues.tempAngle = rotationStateRef.current
@@ -317,6 +334,7 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
   const onMove = (event: any) => {
     if (eventStateRef.current.action === true) {
       eventValues.endY = getCoord(event, 'Y')
+      eventValues.lastY = eventStateRef.current.endY
       eventValues.diffY = (eventValues.endY - eventStateRef.current.startY) / 4
       setEventStateRef({ ...eventValues })
 
@@ -342,23 +360,26 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
     }
   }
 
-  const onEnd = (_event: any) => {
+  const onEnd = (event: any) => {
     eventValues.action = false
-    setEventStateRef({ ...eventValues })
 
+    // const lastDistance = Math.abs(event.clientY - eventStateRef.current.lastY)
     const evt = eventStateRef.current
     const time = Number(new Date()) - Number(evt.startTime)
 
     let speed = (evt.endY - evt.startY) / time
-    const distance = eventStateRef.current.diffY
+    const distance = evt.diffY
 
     if (Math.abs(distance) < 4) speed = 0
 
+    console.log(speed, index, 'end dist: ', eventStateRef.current.lastY)
+
+    setEventStateRef({ ...eventValues })
     scrollOnEnd(speed)
     disablePageScrolling()
   }
 
-  const getTransformValueItems = (index: number) => {
+  const getTransformValueItems = (i: number) => {
     const wheel = refWheeler?.current
 
     if (wheel) {
@@ -372,8 +393,15 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
       wheel.style.transformOrigin = `50% calc(50% + ${heightInt / 2}px)`
       wheel.style.marginTop = `-${heightInt}px`
 
+      let alignment = `start`
+
+      if (index === 0) {
+        alignment = `end`
+      }
+
       return {
-        transform: `rotateX(${angle * index}deg) translateZ(${radius}px)`,
+        // justifyContent: alignment,
+        transform: `rotateX(${angle * i}deg) translateZ(${radius}px)`,
         height,
       }
     }
@@ -403,9 +431,9 @@ const WheelPicker4: FC<PickerOptions> = (props: PickerOptions) => {
         </div>
         <div className={scss.overlay}></div>
       </div>
-      <p className="_no-select" style={{ textAlign: 'center', marginTop: 20 }}>
+      {/* <p className="_no-select" style={{ textAlign: 'center', marginTop: 20 }}>
         Val: {value}
-      </p>
+      </p> */}
     </>
   )
 }
